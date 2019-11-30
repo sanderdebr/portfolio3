@@ -8,9 +8,8 @@ body {
   letter-spacing: 1px;
   -webkit-font-smoothing: antialiased;
   -moz-font-smoothing: antialiased;
-  color: #080808;
-  font-size: 80%;
-  overflow-x: hidden;
+  color: #fffffe;
+  overflow: hidden;
 }
 
 section {

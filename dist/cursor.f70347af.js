@@ -117,79 +117,170 @@ parcelRequire = (function (modules, cache, entry, globalName) {
   }
 
   return newRequire;
-})({"../../AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/bundle-url.js":[function(require,module,exports) {
-var bundleURL = null;
+})({"js/cursor.js":[function(require,module,exports) {
+// set the starting position of the cursor outside of the screen
+var clientX = -100;
+var clientY = -100;
+var innerCursor = document.querySelector(".cursor--small");
 
-function getBundleURLCached() {
-  if (!bundleURL) {
-    bundleURL = getBundleURL();
-  }
+var initCursor = function initCursor() {
+  // add listener to track the current mouse position
+  document.addEventListener("mousemove", function (e) {
+    clientX = e.clientX;
+    clientY = e.clientY;
+  }); // transform the innerCursor to the current mouse position
+  // use requestAnimationFrame() for smooth performance
 
-  return bundleURL;
-}
-
-function getBundleURL() {
-  // Attempt to find the URL of the current script and use that as the base URL
-  try {
-    throw new Error();
-  } catch (err) {
-    var matches = ('' + err.stack).match(/(https?|file|ftp|chrome-extension|moz-extension):\/\/[^)\n]+/g);
-
-    if (matches) {
-      return getBaseURL(matches[0]);
-    }
-  }
-
-  return '/';
-}
-
-function getBaseURL(url) {
-  return ('' + url).replace(/^((?:https?|file|ftp|chrome-extension|moz-extension):\/\/.+)\/[^/]+$/, '$1') + '/';
-}
-
-exports.getBundleURL = getBundleURLCached;
-exports.getBaseURL = getBaseURL;
-},{}],"../../AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/css-loader.js":[function(require,module,exports) {
-var bundle = require('./bundle-url');
-
-function updateLink(link) {
-  var newLink = link.cloneNode();
-
-  newLink.onload = function () {
-    link.remove();
+  var render = function render() {
+    innerCursor.style.transform = "translate(".concat(clientX, "px, ").concat(clientY, "px)");
+    requestAnimationFrame(render);
   };
 
-  newLink.href = link.href.split('?')[0] + '?' + Date.now();
-  link.parentNode.insertBefore(newLink, link.nextSibling);
-}
+  requestAnimationFrame(render);
+};
 
-var cssTimeout = null;
+initCursor();
+var lastX = 0;
+var lastY = 0;
+var isStuck = false;
+var showCursor = false;
+var group, stuckX, stuckY, fillOuterCursor;
 
-function reloadCSS() {
-  if (cssTimeout) {
-    return;
-  }
+var initCanvas = function initCanvas() {
+  var canvas = document.querySelector(".cursor--canvas");
+  var shapeBounds = {
+    width: 75,
+    height: 75
+  };
+  paper.setup(canvas);
+  var strokeColor = "rgba(184, 193, 236, 0.5)";
+  var strokeWidth = 1;
+  var segments = 8;
+  var radius = 15; // we'll need these later for the noisy circle
 
-  cssTimeout = setTimeout(function () {
-    var links = document.querySelectorAll('link[rel="stylesheet"]');
+  var noiseScale = 150; // speed
 
-    for (var i = 0; i < links.length; i++) {
-      if (bundle.getBaseURL(links[i].href) === bundle.getBundleURL()) {
-        updateLink(links[i]);
-      }
+  var noiseRange = 4; // range of distortion
+
+  var isNoisy = false; // state
+  // the base shape for the noisy circle
+
+  var polygon = new paper.Path.RegularPolygon(new paper.Point(0, 0), segments, radius);
+  polygon.strokeColor = strokeColor;
+  polygon.strokeWidth = strokeWidth;
+  polygon.smooth();
+  group = new paper.Group([polygon]);
+  group.applyMatrix = false;
+  var noiseObjects = polygon.segments.map(function () {
+    return new SimplexNoise();
+  });
+  var bigCoordinates = []; // function for linear interpolation of values
+
+  var lerp = function lerp(a, b, n) {
+    return (1 - n) * a + n * b;
+  }; // function to map a value from one range to another range
+
+
+  var map = function map(value, in_min, in_max, out_min, out_max) {
+    return (value - in_min) * (out_max - out_min) / (in_max - in_min) + out_min;
+  }; // the draw loop of Paper.js
+  // (60fps with requestAnimationFrame under the hood)
+
+
+  paper.view.onFrame = function (event) {
+    // using linear interpolation, the circle will move 0.2 (20%)
+    // of the distance between its current position and the mouse
+    // coordinates per Frame
+    if (!isStuck) {
+      // move circle around normally
+      lastX = lerp(lastX, clientX, 0.2);
+      lastY = lerp(lastY, clientY, 0.2);
+      group.position = new paper.Point(lastX, lastY);
+    } else if (isStuck) {
+      // fixed position on a nav item
+      lastX = lerp(lastX, stuckX, 0.2);
+      lastY = lerp(lastY, stuckY, 0.2);
+      group.position = new paper.Point(lastX, lastY);
     }
 
-    cssTimeout = null;
-  }, 50);
-}
+    if (isStuck && polygon.bounds.width < shapeBounds.width) {
+      // scale up the shape 
+      polygon.scale(1.08);
+    } else if (!isStuck && polygon.bounds.width > 30) {
+      // remove noise
+      if (isNoisy) {
+        polygon.segments.forEach(function (segment, i) {
+          segment.point.set(bigCoordinates[i][0], bigCoordinates[i][1]);
+        });
+        isNoisy = false;
+        bigCoordinates = [];
+      } // scale down the shape
 
-module.exports = reloadCSS;
-},{"./bundle-url":"../../AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/bundle-url.js"}],"scss/intro.scss":[function(require,module,exports) {
-var reloadCSS = require('_css_loader');
 
-module.hot.dispose(reloadCSS);
-module.hot.accept(reloadCSS);
-},{"_css_loader":"../../AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/css-loader.js"}],"../../AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+      var scaleDown = 0.92;
+      polygon.scale(scaleDown);
+    } // while stuck and big, apply simplex noise
+
+
+    if (isStuck && polygon.bounds.width >= shapeBounds.width) {
+      isNoisy = true; // first get coordinates of large circle
+
+      if (bigCoordinates.length === 0) {
+        polygon.segments.forEach(function (segment, i) {
+          bigCoordinates[i] = [segment.point.x, segment.point.y];
+        });
+      } // loop over all points of the polygon
+
+
+      polygon.segments.forEach(function (segment, i) {
+        // get new noise value
+        // we divide event.count by noiseScale to get a very smooth value
+        var noiseX = noiseObjects[i].noise2D(event.count / noiseScale, 0);
+        var noiseY = noiseObjects[i].noise2D(event.count / noiseScale, 1); // map the noise value to our defined range
+
+        var distortionX = map(noiseX, -1, 1, -noiseRange, noiseRange);
+        var distortionY = map(noiseY, -1, 1, -noiseRange, noiseRange); // apply distortion to coordinates
+
+        var newX = bigCoordinates[i][0] + distortionX;
+        var newY = bigCoordinates[i][1] + distortionY; // set new (noisy) coodrindate of point
+
+        segment.point.set(newX, newY);
+      });
+    }
+
+    polygon.smooth();
+  };
+};
+
+initCanvas();
+
+var initHovers = function initHovers() {
+  // find the center of the link element and set stuckX and stuckY
+  // these are needed to set the position of the noisy circle
+  var handleMouseEnter = function handleMouseEnter(e) {
+    console.log('hoi');
+    var navItem = e.currentTarget;
+    var navItemBox = navItem.getBoundingClientRect();
+    stuckX = Math.round(navItemBox.left + navItemBox.width / 2);
+    stuckY = Math.round(navItemBox.top + navItemBox.height / 2);
+    isStuck = true;
+  }; // reset isStuck on mouseLeave
+
+
+  var handleMouseLeave = function handleMouseLeave() {
+    isStuck = false;
+  }; // add event listeners to all items
+
+
+  var linkItems = document.querySelectorAll(".link");
+  linkItems.forEach(function (item) {
+    item.addEventListener("mouseenter", handleMouseEnter);
+    item.addEventListener("mouseleave", handleMouseLeave);
+  });
+};
+
+initHovers();
+},{}],"../../AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -393,5 +484,5 @@ function hmrAcceptRun(bundle, id) {
     return true;
   }
 }
-},{}]},{},["../../AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/hmr-runtime.js"], null)
-//# sourceMappingURL=/intro.5561aa7c.js.map
+},{}]},{},["../../AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/hmr-runtime.js","js/cursor.js"], null)
+//# sourceMappingURL=/cursor.f70347af.js.map

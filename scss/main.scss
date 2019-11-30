@@ -91,6 +91,7 @@
     font-size: .8em;
     font-weight: 600;
     position: relative;
+    transition: all ease 500ms;
 }
 
 .menu__h2::before {
@@ -99,8 +100,33 @@
     width: 57px;
     height: 2px;
     left: -82px;
-    top: 9px;
+    top: 7px;
     background: $white;
+    transition: all ease 500ms;
+}
+
+.menu__h2::after {
+    content: '';
+    transition: all ease 500ms;
+    position: absolute;
+    width: 0px;
+    height: 2px;
+    left: -35px;
+    top: 4px;
+}
+
+.menu__h2:hover {
+    color: $main1;
+    &::before {
+        width: 20px;
+        left: -35px;
+        top: 9px;
+        background: $main1;
+    }
+    &::after {
+        width: 20px;
+        background: $main1;
+    }
 }
 
 // MAIN BOTOM
@@ -176,6 +202,11 @@
     visibility: hidden;
     font-weight: 600;
     font-size: .8em;
+    transition: all ease 500ms;
+}
+
+.items__item:hover {
+    color: $main1;
 }
 
 .items__item::after {
@@ -235,6 +266,7 @@
 .content__left, .content__right {
     width: 50%;
     position: relative;
+    padding: 0 15px;
     @media all and (max-width: $mobile) {
         width: 100%;
     }
@@ -405,8 +437,9 @@
     width: 20px;
     height: 20px;
     border-radius: 100%;
-    background: rgba($main2, .05);
-    border: 1px solid rgba($main2, .05);
+    background: rgba($main2, 1);
+    // border: 1px solid rgba($main2, .01);
+    opacity: .1;
     @media all and (max-width: $mobile) {
         top: 35vw;
         left: 36vw;
@@ -414,49 +447,48 @@
 }
 
 .circle__little:nth-child(1) {
-    animation: circleAround $circleSpeed infinite linear;
+    animation: circleAround $circleSpeed infinite linear, glow infinite $circleSpeed;
     @media all and (max-width: $mobile) {
-        animation: circleAroundMobile 20s infinite linear;
+        animation: circleAroundMobile 20s infinite linear, glow infinite $circleSpeed;
     }
 }
 
 .circle__little:nth-child(2) {
-    animation: circleAround $circleSpeed * 1.5 infinite linear;
+    animation: circleAround $circleSpeed * 1.5 infinite linear, glow infinite $circleSpeed * 1.5;
     @media all and (max-width: $mobile) {
-        animation: circleAroundMobile 25s infinite linear;
+        animation: circleAroundMobile 25s infinite linear, glow infinite $circleSpeed * 1.5;
     }
 }
 
 .circle__little:nth-child(3) {
-    animation: circleAround $circleSpeed * 2 infinite linear;
+    animation: circleAround $circleSpeed * 2 infinite linear, glow infinite $circleSpeed * 2;
     @media all and (max-width: $mobile) {
-        animation: circleAroundMobile 30s infinite linear;
+        animation: circleAroundMobile 30s infinite linear, glow infinite $circleSpeed * 2;
     }
 }
 
-.circle__little:nth-child(4) {
-    animation: circleAround $circleSpeed * 2.5 infinite linear;
-    @media all and (max-width: $mobile) {
-        animation: circleAroundMobile 30s infinite linear;
+@keyframes glow {
+    0% {
+        box-shadow: none;
     }
-}
-
-.circle__little:nth-child(5) {
-    animation: circleAround $circleSpeed * 3 infinite linear;
-    @media all and (max-width: $mobile) {
-        animation: circleAroundMobile 30s infinite linear;
+    50% {
+        box-shadow:
+            0 0 10px 10px #fff,  /* inner white */
+    }
+    100% {
+        box-shadow: none;
     }
 }
 
 @keyframes circleAround {
 	from {
 		transform: rotate(0deg)
-		           translate(-50vh)
+		           translate(-49.5vh)
                    rotate(0deg)
 	}
 	to {
 		transform: rotate(360deg)
-		           translate(-50vh) 
+		           translate(-49.5vh) 
                    rotate(-360deg)
 	}
 }

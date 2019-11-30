@@ -12,6 +12,10 @@ body {
     -moz-font-smoothing:antialiased;
     color: $white;
     overflow: hidden;
+    @media all and (max-width: $mobile) {
+        overflow-y: visible;
+        background: $black;
+    }
 }
 
 section {

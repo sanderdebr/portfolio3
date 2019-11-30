@@ -8,6 +8,8 @@ $darkgray: rgba(0, 0, 0, .8);
 $main1: #eebbc3;
 $main2: #b8c1ec;
 
+$mobile: 920px;
+
 @mixin after-black {
     content: "";
     position: absolute;

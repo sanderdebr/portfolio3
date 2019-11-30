@@ -507,7 +507,7 @@
 }
 
 .circle__little:nth-child(2) {
-  animation: circleAround 25s infinite linear;
+  animation: circleAround 30s infinite linear;
 }
 @media all and (max-width: 920px) {
   .circle__little:nth-child(2) {
@@ -516,10 +516,28 @@
 }
 
 .circle__little:nth-child(3) {
-  animation: circleAround 30s infinite linear;
+  animation: circleAround 40s infinite linear;
 }
 @media all and (max-width: 920px) {
   .circle__little:nth-child(3) {
+    animation: circleAroundMobile 30s infinite linear;
+  }
+}
+
+.circle__little:nth-child(4) {
+  animation: circleAround 50s infinite linear;
+}
+@media all and (max-width: 920px) {
+  .circle__little:nth-child(4) {
+    animation: circleAroundMobile 30s infinite linear;
+  }
+}
+
+.circle__little:nth-child(5) {
+  animation: circleAround 60s infinite linear;
+}
+@media all and (max-width: 920px) {
+  .circle__little:nth-child(5) {
     animation: circleAroundMobile 30s infinite linear;
   }
 }

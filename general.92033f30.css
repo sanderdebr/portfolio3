@@ -13,13 +13,18 @@ body {
 }
 @media all and (max-width: 920px) {
   body {
-    overflow-y: visible;
     background: #232946;
   }
 }
 
 section {
   position: absolute;
+  overflow: hidden;
+}
+@media all and (max-width: 920px) {
+  section {
+    overflow-y: visible;
+  }
 }
 
 /*# sourceMappingURL=/general.92033f30.css.map */

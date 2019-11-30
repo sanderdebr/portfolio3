@@ -105,6 +105,7 @@
   font-size: 0.8em;
   font-weight: 600;
   position: relative;
+  transition: all ease 500ms;
 }
 
 .menu__h2::before {
@@ -113,8 +114,33 @@
   width: 57px;
   height: 2px;
   left: -82px;
-  top: 9px;
+  top: 7px;
   background: #fffffe;
+  transition: all ease 500ms;
+}
+
+.menu__h2::after {
+  content: "";
+  transition: all ease 500ms;
+  position: absolute;
+  width: 0px;
+  height: 2px;
+  left: -35px;
+  top: 4px;
+}
+
+.menu__h2:hover {
+  color: #eebbc3;
+}
+.menu__h2:hover::before {
+  width: 20px;
+  left: -35px;
+  top: 9px;
+  background: #eebbc3;
+}
+.menu__h2:hover::after {
+  width: 20px;
+  background: #eebbc3;
 }
 
 .main__bottom {
@@ -195,6 +221,11 @@
   visibility: hidden;
   font-weight: 600;
   font-size: 0.8em;
+  transition: all ease 500ms;
+}
+
+.items__item:hover {
+  color: #eebbc3;
 }
 
 .items__item::after {
@@ -266,6 +297,7 @@
 .content__left, .content__right {
   width: 50%;
   position: relative;
+  padding: 0 15px;
 }
 @media all and (max-width: 920px) {
   .content__left, .content__right {
@@ -487,8 +519,8 @@
   width: 20px;
   height: 20px;
   border-radius: 100%;
-  background: rgba(184, 193, 236, 0.05);
-  border: 1px solid rgba(184, 193, 236, 0.05);
+  background: #b8c1ec;
+  opacity: 0.1;
 }
 @media all and (max-width: 920px) {
   .circle__little {
@@ -498,56 +530,49 @@
 }
 
 .circle__little:nth-child(1) {
-  animation: circleAround 20s infinite linear;
+  animation: circleAround 30s infinite linear, glow infinite 30s;
 }
 @media all and (max-width: 920px) {
   .circle__little:nth-child(1) {
-    animation: circleAroundMobile 20s infinite linear;
+    animation: circleAroundMobile 20s infinite linear, glow infinite 30s;
   }
 }
 
 .circle__little:nth-child(2) {
-  animation: circleAround 30s infinite linear;
+  animation: circleAround 45s infinite linear, glow infinite 45s;
 }
 @media all and (max-width: 920px) {
   .circle__little:nth-child(2) {
-    animation: circleAroundMobile 25s infinite linear;
+    animation: circleAroundMobile 25s infinite linear, glow infinite 45s;
   }
 }
 
 .circle__little:nth-child(3) {
-  animation: circleAround 40s infinite linear;
+  animation: circleAround 60s infinite linear, glow infinite 60s;
 }
 @media all and (max-width: 920px) {
   .circle__little:nth-child(3) {
-    animation: circleAroundMobile 30s infinite linear;
+    animation: circleAroundMobile 30s infinite linear, glow infinite 60s;
   }
 }
 
-.circle__little:nth-child(4) {
-  animation: circleAround 50s infinite linear;
-}
-@media all and (max-width: 920px) {
-  .circle__little:nth-child(4) {
-    animation: circleAroundMobile 30s infinite linear;
+@keyframes glow {
+  0% {
+    box-shadow: none;
+  }
+  50% {
+    box-shadow: 0 0 10px 10px #fff;
+  }
+  100% {
+    box-shadow: none;
   }
 }
-
-.circle__little:nth-child(5) {
-  animation: circleAround 60s infinite linear;
-}
-@media all and (max-width: 920px) {
-  .circle__little:nth-child(5) {
-    animation: circleAroundMobile 30s infinite linear;
-  }
-}
-
 @keyframes circleAround {
   from {
-    transform: rotate(0deg) translate(-50vh) rotate(0deg);
+    transform: rotate(0deg) translate(-49.5vh) rotate(0deg);
   }
   to {
-    transform: rotate(360deg) translate(-50vh) rotate(-360deg);
+    transform: rotate(360deg) translate(-49.5vh) rotate(-360deg);
   }
 }
 @keyframes circleAroundMobile {

@@ -414,21 +414,35 @@
 }
 
 .circle__little:nth-child(1) {
-    animation: circleAround 20s infinite linear;
+    animation: circleAround $circleSpeed infinite linear;
     @media all and (max-width: $mobile) {
         animation: circleAroundMobile 20s infinite linear;
     }
 }
 
 .circle__little:nth-child(2) {
-    animation: circleAround 25s infinite linear;
+    animation: circleAround $circleSpeed * 1.5 infinite linear;
     @media all and (max-width: $mobile) {
         animation: circleAroundMobile 25s infinite linear;
     }
 }
 
 .circle__little:nth-child(3) {
-    animation: circleAround 30s infinite linear;
+    animation: circleAround $circleSpeed * 2 infinite linear;
+    @media all and (max-width: $mobile) {
+        animation: circleAroundMobile 30s infinite linear;
+    }
+}
+
+.circle__little:nth-child(4) {
+    animation: circleAround $circleSpeed * 2.5 infinite linear;
+    @media all and (max-width: $mobile) {
+        animation: circleAroundMobile 30s infinite linear;
+    }
+}
+
+.circle__little:nth-child(5) {
+    animation: circleAround $circleSpeed * 3 infinite linear;
     @media all and (max-width: $mobile) {
         animation: circleAroundMobile 30s infinite linear;
     }

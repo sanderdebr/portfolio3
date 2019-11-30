@@ -1,0 +1,70 @@
+@import './variables';
+
+/********* INTRO ********/
+
+.intro {
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+    background: $white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.intro::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 0%;
+    bottom: 0;
+    background: #f1f1f1;
+}
+
+.intro__title {
+    font-family: 'Roboto', sans-serif;
+    text-transform: uppercase;
+    text-align: center;
+    line-height: 8px;
+}
+
+.intro__title::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    width: 100%;
+    height: 50%;
+    bottom: 0;
+    background: $white;
+}
+
+.intro__h1 {
+    font-size: 1.22em;
+    font-weight: 500;
+    color: $black;
+}
+
+.intro__h2 {
+    font-size: 1em;
+    font-weight: 400;
+    color: $black;
+}
+
+.intro__progressbar {
+    z-index: 2;
+    position: absolute;
+    width: 1px;
+    height: 0px;
+    background: rgba(0, 0, 0, .15);
+    transform: rotate(90deg);
+}
+
+.intro__progressbar::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    width: 100%;
+    height: 0%;
+    bottom: 0;
+    background: rgba(0, 0, 0, .3);
+}

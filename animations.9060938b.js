@@ -8019,11 +8019,11 @@ var timeline = new TimelineMax(); // INTRO ANIMATION
 var introTl = function introTl() {
   var tl = new TimelineMax();
   tl.to(introProgressBar, 1, {
-    height: '330px',
+    height: '280px',
     ease: Power2.easeInOut
   }, '+=.5');
   tl.to(introProgressBarInner, 1, {
-    height: '350px',
+    height: '300px',
     transformOrigin: "0 100%",
     ease: Power2.easeInOut
   }, '-=.55');
@@ -8186,7 +8186,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "58429" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "49976" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

@@ -11,6 +11,12 @@ body {
   color: #fffffe;
   overflow: hidden;
 }
+@media all and (max-width: 920px) {
+  body {
+    overflow-y: visible;
+    background: #232946;
+  }
+}
 
 section {
   position: absolute;

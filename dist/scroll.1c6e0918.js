@@ -117,79 +117,63 @@ parcelRequire = (function (modules, cache, entry, globalName) {
   }
 
   return newRequire;
-})({"../../AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/bundle-url.js":[function(require,module,exports) {
-var bundleURL = null;
+})({"js/scroll.js":[function(require,module,exports) {
+var mainContent = Array.from(document.querySelectorAll('.main__content')); // ANIMATION
 
-function getBundleURLCached() {
-  if (!bundleURL) {
-    bundleURL = getBundleURL();
-  }
+var timeline = new TimelineMax({
+  paused: true
+});
 
-  return bundleURL;
-}
+var swipeLeft = function swipeLeft(currentSlide) {
+  target = CSSRulePlugin.getRule(".main__content::after");
+  var tl = new TimelineMax();
+  tl.to(target, 2, {
+    width: '100%',
+    ease: Power2.easeInOut
+  }, '+=.5');
+  return tl;
+};
 
-function getBundleURL() {
-  // Attempt to find the URL of the current script and use that as the base URL
-  try {
-    throw new Error();
-  } catch (err) {
-    var matches = ('' + err.stack).match(/(https?|file|ftp|chrome-extension|moz-extension):\/\/[^)\n]+/g);
+var initScroll = function initScroll() {
+  mainContent.forEach(function (item) {
+    item.addEventListener("wheel", scrollProjects);
+  });
+};
 
-    if (matches) {
-      return getBaseURL(matches[0]);
-    }
-  }
+var scrollProjects = function scrollProjects(event) {
+  var currentSlide, nextSlide; // uitzetten event listener, en weer aan na 2 sec
 
-  return '/';
-}
+  mainContent.forEach(function (item) {
+    item.removeEventListener("wheel", scrollProjects);
+  });
+  setTimeout(initScroll, 2000); // 1. Bepalen huidige slide
 
-function getBaseURL(url) {
-  return ('' + url).replace(/^((?:https?|file|ftp|chrome-extension|moz-extension):\/\/.+)\/[^/]+$/, '$1') + '/';
-}
+  currentSlide = document.querySelector('.main__content.active').getAttribute('data-slide'); // 2. Check of naar beneden (rechts) of naar boven gescrolld (links)
 
-exports.getBundleURL = getBundleURLCached;
-exports.getBaseURL = getBaseURL;
-},{}],"../../AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/css-loader.js":[function(require,module,exports) {
-var bundle = require('./bundle-url');
+  if (event.deltaY < 0) {
+    // up
+    scrollDirection = 'left';
+  } else if (event.deltaY > 0) {
+    // down
+    scrollDirection = 'right';
+  } // 3. Bepalen wat volgende slide wordt
 
-function updateLink(link) {
-  var newLink = link.cloneNode();
 
-  newLink.onload = function () {
-    link.remove();
-  };
+  var countSlides = document.querySelectorAll('.main__content').length;
 
-  newLink.href = link.href.split('?')[0] + '?' + Date.now();
-  link.parentNode.insertBefore(newLink, link.nextSibling);
-}
+  if (scrollDirection === 'right') {
+    currentSlide != countSlides ? nextSlide = currentSlide + 1 : nextSlide = 1;
+  } else if (scrollDirection === 'left') {
+    currentSlide != 1 ? nextSlide = currentSlide - 1 : nextSlide = countSlides;
+  } // 4. Huidige slide weghalen
 
-var cssTimeout = null;
 
-function reloadCSS() {
-  if (cssTimeout) {
-    return;
-  }
+  timeline.add(swipeLeft(currentSlide));
+  timeline.play(); // 5. Volgende slide tonen
+};
 
-  cssTimeout = setTimeout(function () {
-    var links = document.querySelectorAll('link[rel="stylesheet"]');
-
-    for (var i = 0; i < links.length; i++) {
-      if (bundle.getBaseURL(links[i].href) === bundle.getBundleURL()) {
-        updateLink(links[i]);
-      }
-    }
-
-    cssTimeout = null;
-  }, 50);
-}
-
-module.exports = reloadCSS;
-},{"./bundle-url":"../../AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/bundle-url.js"}],"scss/main.scss":[function(require,module,exports) {
-var reloadCSS = require('_css_loader');
-
-module.hot.dispose(reloadCSS);
-module.hot.accept(reloadCSS);
-},{"./..\\img\\profile.png":[["profile.f6abe80f.png","img/profile.png"],"img/profile.png"],"_css_loader":"../../AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/css-loader.js"}],"../../AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+initScroll();
+},{}],"../../AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -393,5 +377,5 @@ function hmrAcceptRun(bundle, id) {
     return true;
   }
 }
-},{}]},{},["../../AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/hmr-runtime.js"], null)
-//# sourceMappingURL=/main.77bb5cfd.js.map
+},{}]},{},["../../AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/hmr-runtime.js","js/scroll.js"], null)
+//# sourceMappingURL=/scroll.1c6e0918.js.map

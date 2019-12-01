@@ -22,7 +22,8 @@
 }
 
 .intro__title {
-    font-family: 'Roboto', sans-serif;
+    visibility: hidden;
+    font-family: $font1;
     text-transform: uppercase;
     text-align: center;
     line-height: 8px;

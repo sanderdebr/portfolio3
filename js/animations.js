@@ -38,14 +38,14 @@ const timeline = new TimelineMax();
 const introTl = () => {
 
     var tl = new TimelineMax();
-    tl.to(introProgressBar, 1, {height: '280px', ease: Power2.easeInOut}, '+=.5')
-    tl.to(introProgressBarInner, 1, {height: '300px', transformOrigin:"0 100%", ease: Power2.easeInOut}, '-=.55');
-    tl.fromTo(introTitle, .7, {marginTop: 100, visibility: 'hidden'}, {marginTop: -75, visibility: 'visible', ease: Power2.easeInOut}, '-=.3');
-    tl.to(introProgressBar, 1, {height: '100vw', ease: Power2.easeInOut}, '-=.67');
-    tl.to(introProgressBarInner, 1, {height: '2000px', ease: Power2.easeInOut}, '-=1');
-    tl.to(introTitle, .7, {marginTop: 100, ease: Power2.easeInOut}, '+=.5');
-    tl.to(introProgressBar, .5, {opacity: 0, ease: Power2.easeInOut}, '-=.5')
-    tl.to(introAfter, 1, {height: '100%', ease: Power2.easeInOut}, '-=.5')
+    // tl.to(introProgressBar, 1, {height: '280px', ease: Power2.easeInOut}, '+=.5')
+    // tl.to(introProgressBarInner, 1, {height: '300px', transformOrigin:"0 100%", ease: Power2.easeInOut}, '-=.55');
+    // tl.fromTo(introTitle, .7, {marginTop: 100, visibility: 'hidden'}, {marginTop: -75, visibility: 'visible', ease: Power2.easeInOut}, '-=.3');
+    // tl.to(introProgressBar, 1, {height: '100vw', ease: Power2.easeInOut}, '-=.67');
+    // tl.to(introProgressBarInner, 1, {height: '2000px', ease: Power2.easeInOut}, '-=1');
+    // tl.to(introTitle, .7, {marginTop: 100, ease: Power2.easeInOut}, '+=.5');
+    // tl.to(introProgressBar, .5, {opacity: 0, ease: Power2.easeInOut}, '-=.5')
+    // tl.to(introAfter, 1, {height: '100%', ease: Power2.easeInOut}, '-=.5')
     tl.to(main, 0, {background: '#b8c1ec' }, '-=.5');
     tl.to(intro, 0, {display: 'none' });
 

@@ -54,13 +54,18 @@
 }
 
 .logo__h1 {
+    width: 190px;
     visibility: hidden;
-    font-family: 'Roboto', sans-serif;
+    font-family: $font1;
     text-transform: uppercase;
     font-size: 1.2em;
     font-weight: 500;
     margin-bottom:-10px;
     position: relative;
+    transition: all ease 500ms;
+    &:hover {
+        color: $main1;
+    }
 }
 
 .logo__h1::after {
@@ -87,6 +92,8 @@
 }
 
 .menu__h2 {
+    font-family: $font1;
+    height: 20px;
     text-transform: uppercase;
     font-size: .8em;
     font-weight: 600;
@@ -171,7 +178,7 @@
 
 .bottom__num {
     color: $black;
-    font-family: 'Roboto', sans-serif;
+    font-family: $font1;
     font-size: .7em;
     font-weight: 600;
 }
@@ -199,6 +206,7 @@
 }
 
 .items__item {
+    font-family: $font1;
     visibility: hidden;
     font-weight: 600;
     font-size: .8em;
@@ -263,6 +271,11 @@
     }
 }
 
+.main__content::after {
+    @include after-black;
+    width: 0%;
+}
+
 .content__left, .content__right {
     width: 50%;
     position: relative;
@@ -277,6 +290,7 @@
 }
 
 .content__h1 {
+    font-family: $font2;
     visibility: hidden;
     font-size: 3em;
     line-height: 1.3em;
@@ -289,6 +303,7 @@
 }
 
 .content__h4 {
+    font-family: $font2;
     visibility: hidden;
     font-size: 1.2em;
     font-weight: 500;
@@ -432,14 +447,12 @@
 .circle__little {
     z-index: 0;
     position: absolute;
-    top: 48vh;
-    left: 48vh;
-    width: 20px;
-    height: 20px;
+    top: 48.5vh;
+    left: 48.5vh;
+    width: 16px;
+    height: 16px;
     border-radius: 100%;
-    background: rgba($main2, 1);
-    // border: 1px solid rgba($main2, .01);
-    opacity: .1;
+    border: 3px solid rgba($main2, .1);
     @media all and (max-width: $mobile) {
         top: 35vw;
         left: 36vw;
@@ -447,36 +460,23 @@
 }
 
 .circle__little:nth-child(1) {
-    animation: circleAround $circleSpeed infinite linear, glow infinite $circleSpeed;
+    animation: circleAround $circleSpeed infinite linear;
     @media all and (max-width: $mobile) {
-        animation: circleAroundMobile 20s infinite linear, glow infinite $circleSpeed;
+        animation: circleAroundMobile $circleSpeed infinite linear;
     }
 }
 
 .circle__little:nth-child(2) {
-    animation: circleAround $circleSpeed * 1.5 infinite linear, glow infinite $circleSpeed * 1.5;
+    animation: circleAround $circleSpeed * 1.5 infinite linear;
     @media all and (max-width: $mobile) {
-        animation: circleAroundMobile 25s infinite linear, glow infinite $circleSpeed * 1.5;
+        animation: circleAroundMobile $circleSpeed * 1.5 infinite linear;
     }
 }
 
 .circle__little:nth-child(3) {
-    animation: circleAround $circleSpeed * 2 infinite linear, glow infinite $circleSpeed * 2;
+    animation: circleAround $circleSpeed * 2 infinite linear;
     @media all and (max-width: $mobile) {
-        animation: circleAroundMobile 30s infinite linear, glow infinite $circleSpeed * 2;
-    }
-}
-
-@keyframes glow {
-    0% {
-        box-shadow: none;
-    }
-    50% {
-        box-shadow:
-            0 0 10px 10px #fff,  /* inner white */
-    }
-    100% {
-        box-shadow: none;
+        animation: circleAroundMobile $circleSpeed * 2 infinite linear;
     }
 }
 

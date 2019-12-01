@@ -153,7 +153,7 @@ var initCanvas = function initCanvas() {
     height: 75
   };
   paper.setup(canvas);
-  var strokeColor = "rgba(184, 193, 236, 0.5)";
+  var strokeColor = "#eebbc3";
   var strokeWidth = 1;
   var segments = 8;
   var radius = 15; // we'll need these later for the noisy circle
@@ -258,7 +258,6 @@ var initHovers = function initHovers() {
   // find the center of the link element and set stuckX and stuckY
   // these are needed to set the position of the noisy circle
   var handleMouseEnter = function handleMouseEnter(e) {
-    console.log('hoi');
     var navItem = e.currentTarget;
     var navItemBox = navItem.getBoundingClientRect();
     stuckX = Math.round(navItemBox.left + navItemBox.width / 2);
@@ -308,7 +307,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "49701" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "55479" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

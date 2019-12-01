@@ -20,6 +20,7 @@
 }
 
 .intro__title {
+  visibility: hidden;
   font-family: "Roboto", sans-serif;
   text-transform: uppercase;
   text-align: center;

@@ -35,7 +35,7 @@ const initCanvas = () => {
     height: 75
   };
   paper.setup(canvas);
-  const strokeColor = "rgba(184, 193, 236, 0.5)";
+  const strokeColor = "#eebbc3";
   const strokeWidth = 1;
   const segments = 8;
   const radius = 15;
@@ -149,7 +149,6 @@ const initHovers = () => {
     // find the center of the link element and set stuckX and stuckY
     // these are needed to set the position of the noisy circle
     const handleMouseEnter = e => {
-        console.log('hoi');
       const navItem = e.currentTarget;
       const navItemBox = navItem.getBoundingClientRect();
       stuckX = Math.round(navItemBox.left + navItemBox.width / 2);

@@ -8006,8 +8006,8 @@ var menuItems = document.querySelectorAll('.items__item');
 var menuItemsAfter = CSSRulePlugin.getRule(".items__item::after");
 var scroll = document.querySelector('.main__scroll');
 var scrollAfter = CSSRulePlugin.getRule(".main__scroll::after");
-var contentH1 = document.querySelector('.content__h1');
-var contentH4 = document.querySelector('.content__h4');
+var contentH1 = document.querySelectorAll('.content__h1');
+var contentH4 = document.querySelectorAll('.content__h4');
 var contentH1After = CSSRulePlugin.getRule(".content__h1::after");
 var contentH4After = CSSRulePlugin.getRule(".content__h4::after");
 var contentRight = document.querySelectorAll('.content__right');
@@ -8069,11 +8069,16 @@ var mainTl = function mainTl() {
   tl.to(scroll, 0, {
     visibility: 'visible'
   });
-  tl.to(contentH1, 0, {
-    visibility: 'visible'
+  Array.from(contentH1).forEach(function (content) {
+    console.log(content);
+    tl.to(content, 0, {
+      visibility: 'visible'
+    });
   });
-  tl.to(contentH4, 0, {
-    visibility: 'visible'
+  Array.from(contentH4).forEach(function (content) {
+    tl.to(content, 0, {
+      visibility: 'visible'
+    });
   });
   tl.to(contentRight, 0, {
     visibility: 'visible'
@@ -8157,7 +8162,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "55479" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "49912" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

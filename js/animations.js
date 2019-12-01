@@ -22,8 +22,8 @@ const menuItems = document.querySelectorAll('.items__item');
 const menuItemsAfter = CSSRulePlugin.getRule(".items__item::after");
 const scroll = document.querySelector('.main__scroll');
 const scrollAfter = CSSRulePlugin.getRule(".main__scroll::after");
-const contentH1 = document.querySelector('.content__h1');
-const contentH4 = document.querySelector('.content__h4');
+let contentH1 = document.querySelectorAll('.content__h1');
+let contentH4 = document.querySelectorAll('.content__h4');
 const contentH1After = CSSRulePlugin.getRule(".content__h1::after");
 const contentH4After = CSSRulePlugin.getRule(".content__h4::after");
 const contentRight = document.querySelectorAll('.content__right');
@@ -69,8 +69,14 @@ const mainTl = () => {
     tl.to(menu, 0, {visibility: 'visible'});
     tl.to(menuItems, 0, {visibility: 'visible'});
     tl.to(scroll, 0, {visibility: 'visible'});
-    tl.to(contentH1, 0, {visibility: 'visible'});
-    tl.to(contentH4, 0, {visibility: 'visible'});
+
+    Array.from(contentH1).forEach(content => {
+        console.log(content);
+        tl.to(content, 0, {visibility: 'visible'});
+    })
+    Array.from(contentH4).forEach(content => {
+        tl.to(content, 0, {visibility: 'visible'});
+    })
     tl.to(contentRight, 0, {visibility: 'visible'});
 
     tl.to(logoH1After, 1, {width: '0%',  ease: Power2.easeInOut}, );

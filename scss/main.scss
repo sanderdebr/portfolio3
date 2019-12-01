@@ -224,6 +224,7 @@
 // MAIN SCROLL RIGHT
 
 .main__scroll {
+    z-index: 10;
     visibility: hidden;
     position: relative;
     grid-column: 5;
@@ -249,11 +250,11 @@
     border-radius: 8px;
     background: $white;
     margin-bottom: 2.5em;
-    transition: all ease 500ms;
+    transition: all ease 250ms;
 }
 
 .scroll__dot.active {
-    transition: all ease 500ms;
+    transition: all ease 250ms;
     height: 60px;
 }
 
@@ -294,7 +295,7 @@
 .content__h1 {
     font-family: $font2;
     visibility: hidden;
-    font-size: 3em;
+    font-size: 2.5em;
     line-height: 1.3em;
     position: relative;
     color: $white;
@@ -307,7 +308,7 @@
 .content__h4 {
     font-family: $font2;
     visibility: hidden;
-    font-size: 1.2em;
+    font-size: 1.1em;
     font-weight: 500;
     line-height: 2em;
     position: relative;
@@ -357,7 +358,7 @@
 
 .content__techlist {
     position: absolute;
-    margin-left: 20px;
+    margin-left: 30px;
 }
 
 .content__techitem {
@@ -425,7 +426,43 @@
     100% { margin-top: 0; }
 }
 
-// CIRCLE 
+.btn-group {
+    display: flex;
+    align-items: center;
+    visibility: hidden;
+    position: relative;
+    margin-top:40px;
+}
+
+.btn-group::after {
+    @include after-black;
+}
+
+.btn {
+    text-transform: uppercase;
+    font-family: $font1;
+    letter-spacing: 1.7px;
+    font-size: .8em;
+    font-weight: 600;
+    color: $main2;
+    border-radius: 0;
+    background: rgba(0, 0, 0, 0);
+    border: 1px solid $main2;
+    padding: 16px 23px;
+    line-height: 1.5em;
+}
+
+.btn:nth-child(2) {
+    margin: 0 30px;
+}
+
+.btn--extended {
+    font-weight: 500;
+    color: $main2;
+    font-family: $font2;
+}
+
+// CIRCLE BACKGROUND
 
 .circle {
     position: absolute;

@@ -7995,7 +7995,7 @@ var introProgressBarInner = CSSRulePlugin.getRule(".intro__progressbar::after");
 var main = document.querySelector('.main');
 var mainBoxes = document.querySelectorAll('.main__box');
 var mainBoxesInner = CSSRulePlugin.getRule(".main__box::after");
-var mainContent = document.querySelector('.main__content');
+var mainContent = document.querySelectorAll('.main__content');
 var bottom = document.querySelector('.main__bottom');
 var bottomAfter = CSSRulePlugin.getRule(".main__bottom::after");
 var logoH1 = document.querySelector('.logo__h1');
@@ -8012,20 +8012,51 @@ var contentH1After = CSSRulePlugin.getRule(".content__h1::after");
 var contentH4After = CSSRulePlugin.getRule(".content__h4::after");
 var contentRight = document.querySelectorAll('.content__right');
 var contentRightAfter = CSSRulePlugin.getRule(".content__right::after");
-var circle = document.querySelector('.circle'); // ANIMATION
+var circle = document.querySelector('.circle');
+var buttons = document.querySelectorAll('.btn-group');
+var buttonsAfter = CSSRulePlugin.getRule(".btn-group::after"); // ANIMATION
 
 var timeline = new TimelineMax(); // INTRO ANIMATION
 
 var introTl = function introTl() {
-  var tl = new TimelineMax(); // tl.to(introProgressBar, 1, {height: '280px', ease: Power2.easeInOut}, '+=.5')
-  // tl.to(introProgressBarInner, 1, {height: '300px', transformOrigin:"0 100%", ease: Power2.easeInOut}, '-=.55');
-  // tl.fromTo(introTitle, .7, {marginTop: 100, visibility: 'hidden'}, {marginTop: -75, visibility: 'visible', ease: Power2.easeInOut}, '-=.3');
-  // tl.to(introProgressBar, 1, {height: '100vw', ease: Power2.easeInOut}, '-=.67');
-  // tl.to(introProgressBarInner, 1, {height: '2000px', ease: Power2.easeInOut}, '-=1');
-  // tl.to(introTitle, .7, {marginTop: 100, ease: Power2.easeInOut}, '+=.5');
-  // tl.to(introProgressBar, .5, {opacity: 0, ease: Power2.easeInOut}, '-=.5')
-  // tl.to(introAfter, 1, {height: '100%', ease: Power2.easeInOut}, '-=.5')
-
+  var tl = new TimelineMax();
+  tl.to(introProgressBar, 1, {
+    height: '280px',
+    ease: Power2.easeInOut
+  }, '+=.5');
+  tl.to(introProgressBarInner, 1, {
+    height: '300px',
+    transformOrigin: "0 100%",
+    ease: Power2.easeInOut
+  }, '-=.55');
+  tl.fromTo(introTitle, .7, {
+    marginTop: 100,
+    visibility: 'hidden'
+  }, {
+    marginTop: -75,
+    visibility: 'visible',
+    ease: Power2.easeInOut
+  }, '-=.3');
+  tl.to(introProgressBar, 1, {
+    height: '100vw',
+    ease: Power2.easeInOut
+  }, '-=.67');
+  tl.to(introProgressBarInner, 1, {
+    height: '2000px',
+    ease: Power2.easeInOut
+  }, '-=1');
+  tl.to(introTitle, .7, {
+    marginTop: 100,
+    ease: Power2.easeInOut
+  }, '+=.5');
+  tl.to(introProgressBar, .5, {
+    opacity: 0,
+    ease: Power2.easeInOut
+  }, '-=.5');
+  tl.to(introAfter, 1, {
+    height: '100%',
+    ease: Power2.easeInOut
+  }, '-=.5');
   tl.to(main, 0, {
     background: '#b8c1ec'
   }, '-=.5');
@@ -8067,6 +8098,9 @@ var mainTl = function mainTl() {
     visibility: 'visible'
   });
   tl.to(scroll, 0, {
+    visibility: 'visible'
+  });
+  tl.to(buttons, 0, {
     visibility: 'visible'
   });
   Array.from(contentH1).forEach(function (content) {
@@ -8115,6 +8149,10 @@ var mainTl = function mainTl() {
     width: '0%',
     ease: Power2.easeInOut
   }, '-=1.5');
+  tl.to(buttonsAfter, 1, {
+    width: '0%',
+    ease: Power2.easeInOut
+  }, '-=1');
   Array.from(mainBoxes).forEach(function (box) {
     tl.to(box, 0, {
       zIndex: '0'
@@ -8126,8 +8164,10 @@ var mainTl = function mainTl() {
     opacity: 1,
     ease: Power2.easeInOut
   }, '-=.3');
-  tl.to(mainContent, 0, {
-    zIndex: '1'
+  Array.from(mainContent).forEach(function (content, i) {
+    tl.to(content, 0, {
+      zIndex: '1'
+    });
   });
   return tl;
 };
@@ -8162,7 +8202,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "49912" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "50072" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

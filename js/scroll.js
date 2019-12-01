@@ -1,7 +1,7 @@
 // VARIABLES
 
 let fadeSpeed = .5;
-let dotSpeed = .2;
+let dotSpeed =  .5;
 
 const mainContent = Array.from(document.querySelectorAll('.main__content'));
 
@@ -11,27 +11,25 @@ const timeline = new TimelineMax({
 });
 
 // Huidige slide weg
-const swipeOut = (currentSlide) => {
+const swipeOut = (currentSlide, directionOut) => {
     
     var target = document.querySelector(`.main__content[data-slide='${currentSlide}'`);
     target.classList.toggle('active');
 
     var tl = new TimelineMax();
-    tl.to(target, fadeSpeed, {opacity: 0, ease: Power4.easeInOut})
+    tl.fromTo(target, fadeSpeed, {opacity: 1, transform: 'translateY(0px)'}, {opacity: 0, transform: `translateY(${directionOut}300px)`, ease: Power4.easeInOut},)
 
     return tl;
 }
 
 // Volgende slide laten zien
-const swipeIn = (nextSlide) => {
+const swipeIn = (nextSlide, directionIn) => {
 
-    console.log(nextSlide);
     var target = document.querySelector(`.main__content[data-slide='${nextSlide}'`);
     target.classList.toggle('active');
 
-    console.log(target);
     var tl = new TimelineMax();
-    tl.to(target, fadeSpeed, {opacity: 1, ease: Power4.easeInOut},)
+    tl.fromTo(target, fadeSpeed, {opacity: 0, transform: `translateY(${directionIn}300px)`}, {opacity: 1, transform: 'translateY(0px)', ease: Power4.easeInOut},)
 
     return tl;
 }
@@ -44,7 +42,7 @@ const dotOut = (currentSlide) => {
     target.classList.toggle('active');
 
     var tl = new TimelineMax();
-    tl.to(target, dotSpeed, {height: '8px', ease: Power4.easeInOut})
+    tl.to(target, dotSpeed, {height: '8px', ease: Power4.easeInOut},  )
 
     return tl;
 }
@@ -55,7 +53,7 @@ const dotIn = (nextSlide) => {
     target.classList.toggle('active');
 
     var tl = new TimelineMax();
-    tl.to(target, dotSpeed, {height: '60px', ease: Power4.easeInOut} , '-=3')
+    tl.to(target, dotSpeed, {height: '60px', ease: Power4.easeInOut},  )
 
     return tl;
 }
@@ -68,11 +66,12 @@ const initScroll = () => {
 };
 
 const scrollProjects = (event) => {
-    let currentSlide, nextSlide;
+    let currentSlide, nextSlide, directionOut, directionIn;
+
+    console.log(event);
 
     // 1. Bepalen huidige slide
     currentSlide = parseInt(document.querySelector('.main__content.active').getAttribute('data-slide'));
-
 
     // 2. Check of naar beneden (rechts) of naar boven gescrolld (links)
     if (event.deltaY < 0) {
@@ -87,19 +86,23 @@ const scrollProjects = (event) => {
 
     if (scrollDirection === 'down') {
         currentSlide != countSlides ? nextSlide = currentSlide + 1 : nextSlide = 1;
+        directionOut = '-';
+        directionIn = '+';
     } else if (scrollDirection === 'up') {
         currentSlide != 1 ? nextSlide = currentSlide - 1 : nextSlide = countSlides;
+        directionOut = '+';
+        directionIn = '-';
     }
 
     // 4.1 Huidige slide weghalen
-    timeline.add( swipeOut(currentSlide) );
+    timeline.add( swipeOut(currentSlide, directionOut) );
 
-    // 4.2 Navigatie updaten
+    // 4.2 Volgende slide laten zien
+    timeline.add( swipeIn(nextSlide, directionIn) );
+
+    // 4.3 bolletjes updaten
     timeline.add( dotOut(currentSlide) );
     timeline.add( dotIn(nextSlide) );
-
-    // 4.3 Volgende slide laten zien
-    timeline.add( swipeIn(nextSlide) );
 
     // 5. Volgende slide tonen
     timeline.play();
@@ -108,7 +111,7 @@ const scrollProjects = (event) => {
     mainContent.forEach(item => {
         item.removeEventListener("wheel", scrollProjects)
     });
-    setTimeout(initScroll, 5000);
+    setTimeout(initScroll, 1000);
 }
 
 initScroll();

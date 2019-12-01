@@ -247,6 +247,7 @@
 }
 
 .main__scroll {
+  z-index: 10;
   visibility: hidden;
   position: relative;
   grid-column: 5;
@@ -280,11 +281,11 @@
   border-radius: 8px;
   background: #fffffe;
   margin-bottom: 2.5em;
-  transition: all ease 500ms;
+  transition: all ease 250ms;
 }
 
 .scroll__dot.active {
-  transition: all ease 500ms;
+  transition: all ease 250ms;
   height: 60px;
 }
 
@@ -327,7 +328,7 @@
 .content__h1 {
   font-family: "Montserrat", sans-serif;
   visibility: hidden;
-  font-size: 3em;
+  font-size: 2.5em;
   line-height: 1.3em;
   position: relative;
   color: #fffffe;
@@ -346,7 +347,7 @@
 .content__h4 {
   font-family: "Montserrat", sans-serif;
   visibility: hidden;
-  font-size: 1.2em;
+  font-size: 1.1em;
   font-weight: 500;
   line-height: 2em;
   position: relative;
@@ -410,7 +411,7 @@
 
 .content__techlist {
   position: absolute;
-  margin-left: 20px;
+  margin-left: 30px;
 }
 
 .content__techitem {
@@ -468,45 +469,87 @@
     margin-top: 0px;
   }
   15% {
-    margin-top: -39px;
+    margin-top: -35px;
   }
   25% {
-    margin-top: -39px;
+    margin-top: -35px;
   }
   30% {
-    margin-top: -78px;
+    margin-top: -70px;
   }
   40% {
-    margin-top: -78px;
+    margin-top: -70px;
   }
   45% {
-    margin-top: -117px;
+    margin-top: -105px;
   }
   55% {
-    margin-top: -117px;
+    margin-top: -105px;
   }
   60% {
-    margin-top: -156px;
+    margin-top: -140px;
   }
   70% {
-    margin-top: -156px;
+    margin-top: -140px;
   }
   75% {
-    margin-top: -195px;
+    margin-top: -175px;
   }
   85% {
-    margin-top: -195px;
+    margin-top: -175px;
   }
   90% {
-    margin-top: -234px;
+    margin-top: -210px;
   }
   95% {
-    margin-top: -234px;
+    margin-top: -210px;
   }
   100% {
     margin-top: 0;
   }
 }
+.btn-group {
+  display: flex;
+  align-items: center;
+  visibility: hidden;
+  position: relative;
+  margin-top: 40px;
+}
+
+.btn-group::after {
+  content: "";
+  position: absolute;
+  right: 0;
+  top: 0px;
+  width: 100%;
+  height: 100%;
+  background: #232946;
+}
+
+.btn {
+  text-transform: uppercase;
+  font-family: "Roboto", sans-serif;
+  letter-spacing: 1.7px;
+  font-size: 0.8em;
+  font-weight: 600;
+  color: #b8c1ec;
+  border-radius: 0;
+  background: rgba(0, 0, 0, 0);
+  border: 1px solid #b8c1ec;
+  padding: 16px 23px;
+  line-height: 1.5em;
+}
+
+.btn:nth-child(2) {
+  margin: 0 30px;
+}
+
+.btn--extended {
+  font-weight: 500;
+  color: #b8c1ec;
+  font-family: "Montserrat", sans-serif;
+}
+
 .circle {
   position: absolute;
   z-index: 0;

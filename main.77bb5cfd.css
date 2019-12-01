@@ -280,13 +280,16 @@
   border-radius: 8px;
   background: #fffffe;
   margin-bottom: 2.5em;
+  transition: all ease 500ms;
 }
 
-.scroll__dot:last-child {
+.scroll__dot.active {
+  transition: all ease 500ms;
   height: 60px;
 }
 
 .main__content {
+  opacity: 0;
   position: relative;
   grid-column: 2/span 4;
   grid-row: 3;
@@ -302,15 +305,8 @@
   }
 }
 
-.main__content::after {
-  content: "";
-  position: absolute;
-  right: 0;
-  top: 0px;
-  width: 100%;
-  height: 100%;
-  background: #232946;
-  width: 0%;
+.main__content[data-slide="1"] {
+  opacity: 1;
 }
 
 .content__left, .content__right {

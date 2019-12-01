@@ -54,6 +54,7 @@
 }
 
 .logo__h1 {
+  width: 190px;
   visibility: hidden;
   font-family: "Roboto", sans-serif;
   text-transform: uppercase;
@@ -61,6 +62,10 @@
   font-weight: 500;
   margin-bottom: -10px;
   position: relative;
+  transition: all ease 500ms;
+}
+.logo__h1:hover {
+  color: #eebbc3;
 }
 
 .logo__h1::after {
@@ -101,6 +106,8 @@
 }
 
 .menu__h2 {
+  font-family: "Roboto", sans-serif;
+  height: 20px;
   text-transform: uppercase;
   font-size: 0.8em;
   font-weight: 600;
@@ -218,6 +225,7 @@
 }
 
 .items__item {
+  font-family: "Roboto", sans-serif;
   visibility: hidden;
   font-weight: 600;
   font-size: 0.8em;
@@ -294,6 +302,17 @@
   }
 }
 
+.main__content::after {
+  content: "";
+  position: absolute;
+  right: 0;
+  top: 0px;
+  width: 100%;
+  height: 100%;
+  background: #232946;
+  width: 0%;
+}
+
 .content__left, .content__right {
   width: 50%;
   position: relative;
@@ -310,6 +329,7 @@
 }
 
 .content__h1 {
+  font-family: "Montserrat", sans-serif;
   visibility: hidden;
   font-size: 3em;
   line-height: 1.3em;
@@ -328,6 +348,7 @@
 }
 
 .content__h4 {
+  font-family: "Montserrat", sans-serif;
   visibility: hidden;
   font-size: 1.2em;
   font-weight: 500;
@@ -514,13 +535,12 @@
 .circle__little {
   z-index: 0;
   position: absolute;
-  top: 48vh;
-  left: 48vh;
-  width: 20px;
-  height: 20px;
+  top: 48.5vh;
+  left: 48.5vh;
+  width: 16px;
+  height: 16px;
   border-radius: 100%;
-  background: #b8c1ec;
-  opacity: 0.1;
+  border: 3px solid rgba(184, 193, 236, 0.1);
 }
 @media all and (max-width: 920px) {
   .circle__little {
@@ -530,43 +550,32 @@
 }
 
 .circle__little:nth-child(1) {
-  animation: circleAround 30s infinite linear, glow infinite 30s;
+  animation: circleAround 50s infinite linear;
 }
 @media all and (max-width: 920px) {
   .circle__little:nth-child(1) {
-    animation: circleAroundMobile 20s infinite linear, glow infinite 30s;
+    animation: circleAroundMobile 50s infinite linear;
   }
 }
 
 .circle__little:nth-child(2) {
-  animation: circleAround 45s infinite linear, glow infinite 45s;
+  animation: circleAround 75s infinite linear;
 }
 @media all and (max-width: 920px) {
   .circle__little:nth-child(2) {
-    animation: circleAroundMobile 25s infinite linear, glow infinite 45s;
+    animation: circleAroundMobile 75s infinite linear;
   }
 }
 
 .circle__little:nth-child(3) {
-  animation: circleAround 60s infinite linear, glow infinite 60s;
+  animation: circleAround 100s infinite linear;
 }
 @media all and (max-width: 920px) {
   .circle__little:nth-child(3) {
-    animation: circleAroundMobile 30s infinite linear, glow infinite 60s;
+    animation: circleAroundMobile 100s infinite linear;
   }
 }
 
-@keyframes glow {
-  0% {
-    box-shadow: none;
-  }
-  50% {
-    box-shadow: 0 0 10px 10px #fff;
-  }
-  100% {
-    box-shadow: none;
-  }
-}
 @keyframes circleAround {
   from {
     transform: rotate(0deg) translate(-49.5vh) rotate(0deg);

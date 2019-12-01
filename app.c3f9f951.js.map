@@ -1,1 +1,1 @@
-{"version":3,"sources":[],"names":[],"mappings":"","file":"app.c3f9f951.js","sourceRoot":"..","sourcesContent":[]}
+{"version":3,"sources":["js/app.js"],"names":[],"mappings":"AAAA","file":"app.c3f9f951.js","sourceRoot":"..","sourcesContent":["/*\r\nparcel build index.html --public-url ./\r\n\r\ngit subtree push --prefix dist origin gh-pages\r\n */\r\n\r\n "]}

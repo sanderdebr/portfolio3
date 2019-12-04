@@ -1,0 +1,7 @@
+.blur {
+  -webkit-filter: blur(5px) grayscale(100%);
+  filter: blur(5px) grayscale(100%);
+  transition: all 500ms linear;
+}
+
+/*# sourceMappingURL=/effects.225ba6aa.css.map */

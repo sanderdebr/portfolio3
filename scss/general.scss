@@ -24,3 +24,8 @@ section {
         overflow-y: visible;
     }
 }
+
+.link:hover {
+    color: $main1;
+    transition: all 500ms ease;
+}

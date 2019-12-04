@@ -11,7 +11,7 @@
 }
 
 .main__box {
-  border-right: 1px solid rgba(184, 193, 236, 0.1);
+  border-right: 0px solid rgba(184, 193, 236, 0.1);
   height: 0%;
   grid-row: 1/span 5;
   z-index: 1;
@@ -64,9 +64,6 @@
   position: relative;
   transition: all ease 500ms;
 }
-.logo__h1:hover {
-  color: #eebbc3;
-}
 
 .logo__h1::after {
   content: "";
@@ -79,6 +76,7 @@
 }
 
 .main__menu {
+  z-index: 2;
   visibility: hidden;
   position: relative;
   grid-column: 5;
@@ -136,9 +134,6 @@
   top: 4px;
 }
 
-.menu__h2:hover {
-  color: #eebbc3;
-}
 .menu__h2:hover::before {
   width: 20px;
   left: -35px;
@@ -232,10 +227,6 @@
   transition: all ease 500ms;
 }
 
-.items__item:hover {
-  color: #eebbc3;
-}
-
 .items__item::after {
   content: "";
   position: absolute;
@@ -281,11 +272,11 @@
   border-radius: 8px;
   background: #fffffe;
   margin-bottom: 2.5em;
-  transition: all ease 250ms;
+  transition: all ease 500ms;
 }
 
 .scroll__dot.active {
-  transition: all ease 250ms;
+  transition: all ease 500ms;
   height: 60px;
 }
 
@@ -308,6 +299,7 @@
 
 .main__content[data-slide="1"] {
   opacity: 1;
+  z-index: 1;
 }
 
 .content__left, .content__right {
@@ -508,6 +500,10 @@
     margin-top: 0;
   }
 }
+.learnmore {
+  color: #eebbc3;
+}
+
 .btn-group {
   display: flex;
   align-items: center;
@@ -527,21 +523,46 @@
 }
 
 .btn {
+  position: relative;
   text-transform: uppercase;
   font-family: "Roboto", sans-serif;
   letter-spacing: 1.7px;
   font-size: 0.8em;
   font-weight: 600;
-  color: #b8c1ec;
+  color: #eebbc3;
   border-radius: 0;
   background: rgba(0, 0, 0, 0);
-  border: 1px solid #b8c1ec;
-  padding: 16px 23px;
+  border: 1px solid #eebbc3;
+  padding: 18px 29px;
   line-height: 1.5em;
+}
+.btn::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 101%;
+  height: 100%;
+  background: #eebbc3;
+  z-index: -1;
+  transition: transform 175ms ease-in;
+  transform: scaleX(0);
+  transform-origin: left;
+}
+.btn:hover {
+  color: #232946;
+}
+.btn:hover::after {
+  transform: scaleX(1);
 }
 
 .btn:nth-child(2) {
-  margin: 0 30px;
+  margin: 0 25px;
+}
+
+.btn:hover::after {
+  transform: scaleX(1);
+  color: #232946;
 }
 
 .btn--extended {

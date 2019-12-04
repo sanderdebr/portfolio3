@@ -27,4 +27,9 @@ section {
   }
 }
 
+.link:hover {
+  color: #eebbc3;
+  transition: all 500ms ease;
+}
+
 /*# sourceMappingURL=/general.92033f30.css.map */

@@ -8019,44 +8019,15 @@ var buttonsAfter = CSSRulePlugin.getRule(".btn-group::after"); // ANIMATION
 var timeline = new TimelineMax(); // INTRO ANIMATION
 
 var introTl = function introTl() {
-  var tl = new TimelineMax();
-  tl.to(introProgressBar, 1, {
-    height: '280px',
-    ease: Power2.easeInOut
-  }, '+=.5');
-  tl.to(introProgressBarInner, 1, {
-    height: '300px',
-    transformOrigin: "0 100%",
-    ease: Power2.easeInOut
-  }, '-=.55');
-  tl.fromTo(introTitle, .7, {
-    marginTop: 100,
-    visibility: 'hidden'
-  }, {
-    marginTop: -75,
-    visibility: 'visible',
-    ease: Power2.easeInOut
-  }, '-=.3');
-  tl.to(introProgressBar, 1, {
-    height: '100vw',
-    ease: Power2.easeInOut
-  }, '-=.67');
-  tl.to(introProgressBarInner, 1, {
-    height: '2000px',
-    ease: Power2.easeInOut
-  }, '-=1');
-  tl.to(introTitle, .7, {
-    marginTop: 100,
-    ease: Power2.easeInOut
-  }, '+=.5');
-  tl.to(introProgressBar, .5, {
-    opacity: 0,
-    ease: Power2.easeInOut
-  }, '-=.5');
-  tl.to(introAfter, 1, {
-    height: '100%',
-    ease: Power2.easeInOut
-  }, '-=.5');
+  var tl = new TimelineMax(); // tl.to(introProgressBar, 1, {height: '280px', ease: Power2.easeInOut}, '+=.5')
+  // tl.to(introProgressBarInner, 1, {height: '300px', transformOrigin:"0 100%", ease: Power2.easeInOut}, '-=.55');
+  // tl.fromTo(introTitle, .7, {marginTop: 100, visibility: 'hidden'}, {marginTop: -75, visibility: 'visible', ease: Power2.easeInOut}, '-=.3');
+  // tl.to(introProgressBar, 1, {height: '100vw', ease: Power2.easeInOut}, '-=.67');
+  // tl.to(introProgressBarInner, 1, {height: '2000px', ease: Power2.easeInOut}, '-=1');
+  // tl.to(introTitle, .7, {marginTop: 100, ease: Power2.easeInOut}, '+=.5');
+  // tl.to(introProgressBar, .5, {opacity: 0, ease: Power2.easeInOut}, '-=.5')
+  // tl.to(introAfter, 1, {height: '100%', ease: Power2.easeInOut}, '-=.5')
+
   tl.to(main, 0, {
     background: '#b8c1ec'
   }, '-=.5');
@@ -8079,12 +8050,6 @@ var mainTl = function mainTl() {
   tl.to(main, 0, {
     background: '#232946'
   });
-  Array.from(mainBoxes).forEach(function (box, i) {
-    tl.to(box, .05, {
-      height: '100%',
-      ease: Power1.easeInOut
-    });
-  });
   tl.to(logoH1, 0, {
     visibility: 'visible'
   });
@@ -8104,7 +8069,6 @@ var mainTl = function mainTl() {
     visibility: 'visible'
   });
   Array.from(contentH1).forEach(function (content) {
-    console.log(content);
     tl.to(content, 0, {
       visibility: 'visible'
     });
@@ -8154,21 +8118,22 @@ var mainTl = function mainTl() {
     ease: Power2.easeInOut
   }, '-=1');
   Array.from(mainBoxes).forEach(function (box) {
-    tl.to(box, 0, {
-      zIndex: '0'
-    });
+    tl.to(box, 2, {
+      height: '100%',
+      zIndex: '0',
+      borderRight: '1px solid rgba(184, 193, 236, .1)',
+      ease: Power4.easeInOut
+    }, '-=1.5');
   });
   tl.fromTo(circle, 2, {
     opacity: 0
   }, {
     opacity: 1,
     ease: Power2.easeInOut
-  }, '-=.3');
-  Array.from(mainContent).forEach(function (content, i) {
-    tl.to(content, 0, {
-      zIndex: '1'
-    });
-  });
+  }, '-=.3'); // Array.from(mainContent).forEach((content, i) => {
+  //     tl.to(content, 0, {zIndex: '1' }, );
+  // });
+
   return tl;
 };
 
@@ -8202,7 +8167,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "50072" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "50368" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

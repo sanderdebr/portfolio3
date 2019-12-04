@@ -120,8 +120,10 @@ parcelRequire = (function (modules, cache, entry, globalName) {
 })({"js/scroll.js":[function(require,module,exports) {
 // VARIABLES
 var fadeSpeed = .5;
-var dotSpeed = .5;
-var mainContent = Array.from(document.querySelectorAll('.main__content')); // ANIMATION
+var dotSpeed = 0;
+var mainContent = Array.from(document.querySelectorAll('.main__content'));
+var bottomNumFirst = document.querySelector('.bottom__num');
+var bottomNumSecond = document.querySelector('.bottom__num.second'); // ANIMATION
 
 var timeline = new TimelineMax({
   paused: true
@@ -136,14 +138,17 @@ var swipeOut = function swipeOut(currentSlide, directionOut) {
     transform: 'translateY(0px)'
   }, {
     opacity: 0,
+    zIndex: 0,
     transform: "translateY(".concat(directionOut, "300px)"),
-    ease: Power4.easeInOut
+    ease: Power1.easeInOut
   });
   return tl;
 }; // Volgende slide laten zien
 
 
 var swipeIn = function swipeIn(nextSlide, directionIn) {
+  // Slide nummer aanpassen
+  bottomNumFirst.innerHTML = "0".concat(nextSlide);
   var target = document.querySelector(".main__content[data-slide='".concat(nextSlide, "'"));
   target.classList.toggle('active');
   var tl = new TimelineMax();
@@ -152,45 +157,35 @@ var swipeIn = function swipeIn(nextSlide, directionIn) {
     transform: "translateY(".concat(directionIn, "300px)")
   }, {
     opacity: 1,
+    zIndex: 1,
     transform: 'translateY(0px)',
-    ease: Power4.easeInOut
+    ease: Power1.easeInOut
   });
   return tl;
 }; // Navigatie bolletje updaten
 
 
-var dotOut = function dotOut(currentSlide) {
-  var target = document.querySelector(".scroll__dot[data-slide='".concat(currentSlide, "'"));
-  target.classList.toggle('active');
-  var tl = new TimelineMax();
-  tl.to(target, dotSpeed, {
-    height: '8px',
-    ease: Power4.easeInOut
-  });
-  return tl;
-};
-
 var dotIn = function dotIn(nextSlide) {
   var target = document.querySelector(".scroll__dot[data-slide='".concat(nextSlide, "'"));
   target.classList.toggle('active');
-  var tl = new TimelineMax();
-  tl.to(target, dotSpeed, {
-    height: '60px',
-    ease: Power4.easeInOut
-  });
-  return tl;
+};
+
+var dotOut = function dotOut(currentSlide) {
+  var target = document.querySelector(".scroll__dot[data-slide='".concat(currentSlide, "'"));
+  target.classList.toggle('active');
 }; // Scroll weer aanzetten na x seconden
 
 
 var initScroll = function initScroll() {
   mainContent.forEach(function (item) {
     item.addEventListener("wheel", scrollProjects);
-  });
+  }); // array totaal aantal
+
+  bottomNumSecond.innerHTML = "0".concat(mainContent.length);
 };
 
 var scrollProjects = function scrollProjects(event) {
-  var currentSlide, nextSlide, directionOut, directionIn;
-  console.log(event); // 1. Bepalen huidige slide
+  var currentSlide, nextSlide, directionOut, directionIn; // 1. Bepalen huidige slide
 
   currentSlide = parseInt(document.querySelector('.main__content.active').getAttribute('data-slide')); // 2. Check of naar beneden (rechts) of naar boven gescrolld (links)
 
@@ -218,8 +213,8 @@ var scrollProjects = function scrollProjects(event) {
 
   timeline.add(swipeIn(nextSlide, directionIn)); // 4.3 bolletjes updaten
 
-  timeline.add(dotOut(currentSlide));
-  timeline.add(dotIn(nextSlide)); // 5. Volgende slide tonen
+  dotIn(nextSlide);
+  dotOut(currentSlide); // 5. Volgende slide tonen
 
   timeline.play(); // 3 sec eventlistenere uitschakelen
 
@@ -258,7 +253,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "50072" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "50368" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

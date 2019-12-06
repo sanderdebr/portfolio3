@@ -15,6 +15,8 @@ body {
     -moz-font-smoothing:antialiased;
     color: $white;
     overflow: hidden;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
     @media all and (max-width: $mobile) {
         background: $black;
     }

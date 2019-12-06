@@ -8019,17 +8019,46 @@ var buttonsAfter = CSSRulePlugin.getRule(".btn-group::after"); // ANIMATION
 var timeline = new TimelineMax(); // INTRO ANIMATION
 
 var introTl = function introTl() {
-  var tl = new TimelineMax(); // tl.to(introProgressBar, 1, {height: '280px', ease: Power2.easeInOut}, '+=.5')
-  // tl.to(introProgressBarInner, 1, {height: '300px', transformOrigin:"0 100%", ease: Power2.easeInOut}, '-=.55');
-  // tl.fromTo(introTitle, .7, {marginTop: 100, visibility: 'hidden'}, {marginTop: -75, visibility: 'visible', ease: Power2.easeInOut}, '-=.3');
-  // tl.to(introProgressBar, 1, {height: '100vw', ease: Power2.easeInOut}, '-=.67');
-  // tl.to(introProgressBarInner, 1, {height: '2000px', ease: Power2.easeInOut}, '-=1');
-  // tl.to(introTitle, .7, {marginTop: 100, ease: Power2.easeInOut}, '+=.5');
-  // tl.to(introProgressBar, .5, {opacity: 0, ease: Power2.easeInOut}, '-=.5')
-  // tl.to(introAfter, 1, {height: '100%', ease: Power2.easeInOut}, '-=.5')
-
+  var tl = new TimelineMax();
+  tl.to(introProgressBar, 1, {
+    height: '280px',
+    ease: Power2.easeInOut
+  }, '+=.5');
+  tl.to(introProgressBarInner, 1, {
+    height: '300px',
+    transformOrigin: "0 100%",
+    ease: Power2.easeInOut
+  }, '-=.55');
+  tl.fromTo(introTitle, .7, {
+    marginTop: 100,
+    visibility: 'hidden'
+  }, {
+    marginTop: -75,
+    visibility: 'visible',
+    ease: Power2.easeInOut
+  }, '-=.3');
+  tl.to(introProgressBar, 1, {
+    height: '100vw',
+    ease: Power2.easeInOut
+  }, '-=.67');
+  tl.to(introProgressBarInner, 1, {
+    height: '2000px',
+    ease: Power2.easeInOut
+  }, '-=1');
+  tl.to(introTitle, .7, {
+    marginTop: 100,
+    ease: Power2.easeInOut
+  }, '+=.5');
+  tl.to(introProgressBar, .5, {
+    opacity: 0,
+    ease: Power2.easeInOut
+  }, '-=.5');
+  tl.to(introAfter, 1, {
+    height: '100%',
+    ease: Power2.easeInOut
+  }, '-=.5');
   tl.to(main, 0, {
-    background: '#b8c1ec'
+    background: '#e41143'
   }, '-=.5');
   tl.to(intro, 0, {
     display: 'none'
@@ -8048,7 +8077,7 @@ var mainTl = function mainTl() {
     display: 'none'
   });
   tl.to(main, 0, {
-    background: '#232946'
+    background: '#191A1E'
   });
   tl.to(logoH1, 0, {
     visibility: 'visible'
@@ -8175,7 +8204,7 @@ var initCanvas = function initCanvas() {
     height: 75
   };
   paper.setup(canvas);
-  var strokeColor = "#eebbc3";
+  var strokeColor = "#e41143";
   var strokeWidth = 1;
   var segments = 8;
   var radius = 15; // we'll need these later for the noisy circle
@@ -8452,7 +8481,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "59600" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "49811" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

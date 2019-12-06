@@ -14,14 +14,15 @@ const timeline = new TimelineMax({
 
 // Huidige slide weg
 const swipeOut = (currentSlide, directionOut) => {
-    
+
     var target = document.querySelector(`.main__content[data-slide='${currentSlide}'`);
     target.classList.toggle('active');
 
     var tl = new TimelineMax();
+
     tl.fromTo(target, fadeSpeed, {opacity: 1, transform: 'translateY(0px)'}, {opacity: 0, zIndex: 0, transform: `translateY(${directionOut}300px)`, ease: Power1.easeInOut},)
 
-    return tl;
+     return tl;
 }
 
 // Volgende slide laten zien

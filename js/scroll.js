@@ -106,7 +106,16 @@ const scrollProjects = (event) => {
     mainContent.forEach(item => {
         item.removeEventListener("wheel", scrollProjects)
     });
-    setTimeout(initScroll, 1000);
+    setTimeout(initScroll, 500);
 }
+
+// Learn more klik naar tweede slide
+document.querySelector('.learnmore').addEventListener('click', () => {
+    timeline.add( swipeOut(1, '-') );
+    timeline.add( swipeIn(2, '+') );
+    dotIn(2);
+    dotOut(1);
+    timeline.play();
+})
 
 initScroll();

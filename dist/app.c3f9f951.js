@@ -8013,6 +8013,7 @@ var contentH4After = CSSRulePlugin.getRule(".content__h4::after");
 var contentRight = document.querySelectorAll('.content__right');
 var contentRightAfter = CSSRulePlugin.getRule(".content__right::after");
 var circle = document.querySelector('.circle');
+var rectangles = document.querySelector('.rectangles');
 var buttons = document.querySelectorAll('.btn-group');
 var buttonsAfter = CSSRulePlugin.getRule(".btn-group::after"); // ANIMATION
 
@@ -8130,7 +8131,13 @@ var mainTl = function mainTl() {
   }, {
     opacity: 1,
     ease: Power2.easeInOut
-  }, '-=.3'); // Array.from(mainContent).forEach((content, i) => {
+  });
+  tl.fromTo(rectangles, 2, {
+    opacity: 0
+  }, {
+    opacity: 1,
+    ease: Power2.easeInOut
+  }); // Array.from(mainContent).forEach((content, i) => {
   //     tl.to(content, 0, {zIndex: '1' }, );
   // });
 
@@ -8405,9 +8412,17 @@ var scrollProjects = function scrollProjects(event) {
   mainContent.forEach(function (item) {
     item.removeEventListener("wheel", scrollProjects);
   });
-  setTimeout(initScroll, 1000);
-};
+  setTimeout(initScroll, 500);
+}; // Learn more klik naar tweede slide
 
+
+document.querySelector('.learnmore').addEventListener('click', function () {
+  timeline.add(swipeOut(1, '-'));
+  timeline.add(swipeIn(2, '+'));
+  dotIn(2);
+  dotOut(1);
+  timeline.play();
+});
 initScroll();
 },{}],"js/app.js":[function(require,module,exports) {
 /*
@@ -8452,7 +8467,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "65361" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "49786" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

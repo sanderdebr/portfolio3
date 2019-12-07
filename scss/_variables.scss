@@ -12,6 +12,8 @@ $font1: 'Roboto', sans-serif;
 $font2: 'Montserrat', sans-serif;
 
 $mobile: 920px;
+$smallScreen: 1900px;
+$screenHeight: 650px;
 
 @mixin after-black {
     content: "";
@@ -25,3 +27,4 @@ $mobile: 920px;
 
 $techSlide: -35;
 $circleSpeed: 50s;
+$rectangleSpeed: 20s;

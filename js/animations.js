@@ -29,6 +29,7 @@ const contentH4After = CSSRulePlugin.getRule(".content__h4::after");
 const contentRight = document.querySelectorAll('.content__right');
 const contentRightAfter = CSSRulePlugin.getRule(".content__right::after");
 const circle = document.querySelector('.circle');
+const rectangles = document.querySelector('.rectangles');
 const buttons = document.querySelectorAll('.btn-group');
 const buttonsAfter = CSSRulePlugin.getRule(".btn-group::after");
 
@@ -91,7 +92,8 @@ const mainTl = () => {
         tl.to(box, 2, {height: '100%', zIndex: '0', borderRight: '1px solid rgba(184, 193, 236, .1)', ease: Power4.easeInOut }, '-=1.5' );
     });
 
-    tl.fromTo(circle, 2, {opacity: 0 }, {opacity: 1, ease: Power2.easeInOut}, '-=.3');
+    tl.fromTo(circle, 2, {opacity: 0 }, {opacity: 1, ease: Power2.easeInOut}, );
+    tl.fromTo(rectangles, 2, {opacity: 0 }, {opacity: 1, ease: Power2.easeInOut}, );
 
     // Array.from(mainContent).forEach((content, i) => {
     //     tl.to(content, 0, {zIndex: '1' }, );

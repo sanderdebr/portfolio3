@@ -1,5 +1,6 @@
 @import './variables';
 @import './main.scss';
+@import './mainContent.scss';
 @import './intro';
 @import './cursor';
 
@@ -31,6 +32,7 @@ section {
 }
 
 .link:hover {
+    cursor: pointer;
     color: $main1;
     transition: all 500ms ease;
 }

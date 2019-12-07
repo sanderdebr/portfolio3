@@ -41,7 +41,7 @@ const initCanvas = () => {
   const radius = 15;
   
   // we'll need these later for the noisy circle
-  const noiseScale = 150; // speed
+  const noiseScale = 50; // speed
   const noiseRange = 4; // range of distortion
   let isNoisy = false; // state
   
@@ -92,7 +92,7 @@ paper.view.onFrame = event => {
     
     if (isStuck && polygon.bounds.width < shapeBounds.width) { 
       // scale up the shape 
-      polygon.scale(1.08);
+      polygon.scale(1.2);
     } else if (!isStuck && polygon.bounds.width > 30) {
       // remove noise
       if (isNoisy) {

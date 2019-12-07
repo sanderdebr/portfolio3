@@ -15,6 +15,8 @@ $mobile: 920px;
 $smallScreen: 1900px;
 $screenHeight: 650px;
 
+$slide2: '.main__content[data-slide="2"]';
+
 @mixin after-black {
     content: "";
     position: absolute;

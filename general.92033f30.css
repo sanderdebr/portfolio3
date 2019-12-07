@@ -856,6 +856,10 @@
   background: #e41143;
 }
 
+html, body, section, a {
+  cursor: none;
+}
+
 .cursor {
   position: fixed;
   left: 0;
@@ -910,7 +914,6 @@ section {
 }
 
 .link:hover {
-  cursor: pointer;
   color: #e41143;
   transition: all 500ms ease;
 }

@@ -8187,7 +8187,7 @@ var initCanvas = function initCanvas() {
   var segments = 8;
   var radius = 15; // we'll need these later for the noisy circle
 
-  var noiseScale = 150; // speed
+  var noiseScale = 50; // speed
 
   var noiseRange = 4; // range of distortion
 
@@ -8234,7 +8234,7 @@ var initCanvas = function initCanvas() {
 
     if (isStuck && polygon.bounds.width < shapeBounds.width) {
       // scale up the shape 
-      polygon.scale(1.08);
+      polygon.scale(1.2);
     } else if (!isStuck && polygon.bounds.width > 30) {
       // remove noise
       if (isNoisy) {
@@ -8330,7 +8330,7 @@ var swipeOut = function swipeOut(currentSlide, directionOut) {
   }, {
     opacity: 0,
     zIndex: 0,
-    transform: "translateY(".concat(directionOut, "300px)"),
+    transform: "translateY(".concat(directionOut, "100px)"),
     ease: Power1.easeInOut
   });
   return tl;
@@ -8345,7 +8345,7 @@ var swipeIn = function swipeIn(nextSlide, directionIn) {
   var tl = new TimelineMax();
   tl.fromTo(target, fadeSpeed, {
     opacity: 0,
-    transform: "translateY(".concat(directionIn, "300px)")
+    transform: "translateY(".concat(directionIn, "100px)")
   }, {
     opacity: 1,
     zIndex: 1,
@@ -8467,7 +8467,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "49786" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "50162" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

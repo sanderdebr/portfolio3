@@ -166,6 +166,11 @@
     display: none;
   }
 }
+@media all and (max-height: 650px) {
+  .main__bottom {
+    display: none;
+  }
+}
 
 .main__bottom::after {
   content: "";
@@ -178,6 +183,13 @@
 }
 
 .bottom__numbers {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  position: relative;
+}
+
+.num__holder {
   width: 175px;
   display: flex;
   justify-content: space-between;
@@ -197,6 +209,14 @@
 .bottom__num {
   color: #191A1E;
   font-family: "Roboto", sans-serif;
+  font-size: 0.7em;
+  font-weight: 600;
+}
+
+.bottom__scroll {
+  color: #191A1E;
+  font-family: "Roboto", sans-serif;
+  text-transform: uppercase;
   font-size: 0.7em;
   font-weight: 600;
 }
@@ -299,6 +319,11 @@
     grid-row: 2;
   }
 }
+@media all and (max-height: 650px) {
+  .main__content {
+    font-size: 80%;
+  }
+}
 
 .main__content[data-slide="1"] {
   opacity: 1;
@@ -321,9 +346,11 @@
 }
 
 .content__h1 {
+  padding: 0;
+  margin: 0;
   font-family: "Montserrat", sans-serif;
   visibility: hidden;
-  font-size: 2.5em;
+  font-size: 3em;
   line-height: 1.3em;
   position: relative;
   color: #fffffe;
@@ -347,6 +374,7 @@
   line-height: 2em;
   position: relative;
   color: #fffffe;
+  margin-top: 30px;
 }
 
 .content__h4::after {
@@ -362,7 +390,7 @@
 .profile__img {
   margin-left: 60px;
   width: 40%;
-  height: 100%;
+  height: 375px;
   position: relative;
   background: url("/profile.f6abe80f.png") no-repeat;
   background-size: cover;
@@ -512,7 +540,7 @@
   align-items: center;
   visibility: hidden;
   position: relative;
-  margin-top: 40px;
+  margin-top: 50px;
 }
 
 .btn-group::after {
@@ -567,6 +595,11 @@
   font-weight: 500;
   color: #fffffe;
   font-family: "Montserrat", sans-serif;
+}
+@media all and (max-width: 1900px) {
+  .btn--extended {
+    font-size: 0.8em;
+  }
 }
 
 .circle {
@@ -648,6 +681,41 @@
   }
   to {
     transform: rotate(360deg) translate(-38vw) rotate(-360deg);
+  }
+}
+.rectangle__little {
+  top: 0;
+  z-index: 0;
+  position: absolute;
+  left: 20%;
+  margin-left: -3.5px;
+  width: 7px;
+  height: 30px;
+  background: rgba(255, 255, 254, 0.05);
+  animation: rectangle 20s infinite linear;
+}
+
+.rectangle__little:nth-child(2) {
+  left: 40%;
+  animation: rectangle 16s infinite linear;
+}
+
+.rectangle__little:nth-child(3) {
+  left: 60%;
+  animation: rectangle 12s infinite linear;
+}
+
+.rectangle__little:nth-child(4) {
+  left: 80%;
+  animation: rectangle 10s infinite linear;
+}
+
+@keyframes rectangle {
+  from {
+    top: 0;
+  }
+  to {
+    top: 100%;
   }
 }
 /********* INTRO ********/

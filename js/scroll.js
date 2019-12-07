@@ -1,6 +1,6 @@
 // VARIABLES
 
-let fadeSpeed = .5;
+let fadeSpeed = .4;
 let dotSpeed =  0;
 
 const mainContent = Array.from(document.querySelectorAll('.main__content'));
@@ -20,7 +20,7 @@ const swipeOut = (currentSlide, directionOut) => {
 
     var tl = new TimelineMax();
 
-    tl.fromTo(target, fadeSpeed, {opacity: 1, transform: 'translateY(0px)'}, {opacity: 0, zIndex: 0, transform: `translateY(${directionOut}100px)`, ease: Power1.easeInOut},)
+    tl.fromTo(target, fadeSpeed, {opacity: 1, transform: 'translateY(0px)'}, {opacity: 0, zIndex: 0, transform: `translateY(${directionOut}100px)`, ease: Power4.easeInOut},)
 
      return tl;
 }
@@ -35,7 +35,7 @@ const swipeIn = (nextSlide, directionIn) => {
     target.classList.toggle('active');
     
     var tl = new TimelineMax();
-    tl.fromTo(target, fadeSpeed, {opacity: 0, transform: `translateY(${directionIn}100px)`}, {opacity: 1, zIndex: 1, transform: 'translateY(0px)', ease: Power1.easeInOut},)
+    tl.fromTo(target, fadeSpeed, {opacity: 0, transform: `translateY(${directionIn}100px)`}, {opacity: 1, zIndex: 1, transform: 'translateY(0px)', ease: Power4.easeInOut},)
 
     return tl;
 

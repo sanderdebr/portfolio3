@@ -41,14 +41,14 @@ const timeline = new TimelineMax();
 const introTl = () => {
 
     var tl = new TimelineMax();
-    // tl.to(introProgressBar, 1, {height: '280px', ease: Power2.easeInOut}, '+=.5')
-    // tl.to(introProgressBarInner, 1, {height: '300px', transformOrigin:"0 100%", ease: Power2.easeInOut}, '-=.55');
-    // tl.fromTo(introTitle, .7, {marginTop: 100, visibility: 'hidden'}, {marginTop: -75, visibility: 'visible', ease: Power2.easeInOut}, '-=.3');
-    // tl.to(introProgressBar, 1, {height: '100vw', ease: Power2.easeInOut}, '-=.67');
-    // tl.to(introProgressBarInner, 1, {height: '2000px', ease: Power2.easeInOut}, '-=1');
-    // tl.to(introTitle, .7, {marginTop: 100, ease: Power2.easeInOut}, '+=.5');
-    // tl.to(introProgressBar, .5, {opacity: 0, ease: Power2.easeInOut}, '-=.5')
-    // tl.to(introAfter, 1, {height: '100%', ease: Power2.easeInOut}, '-=.5')
+    // tl.to(introProgressBar, 1, {height: '280px', ease: Power4.easeInOut}, '+=.5')
+    // tl.to(introProgressBarInner, 1, {height: '300px', transformOrigin:"0 100%", ease: Power4.easeInOut}, '-=.55');
+    // tl.fromTo(introTitle, .7, {marginTop: 100, visibility: 'hidden'}, {marginTop: -75, visibility: 'visible', ease: Power4.easeInOut}, '-=.3');
+    // tl.to(introProgressBar, 1, {height: '100vw', ease: Power4.easeInOut}, '-=.67');
+    // tl.to(introProgressBarInner, 1, {height: '2000px', ease: Power4.easeInOut}, '-=1');
+    // tl.to(introTitle, .7, {marginTop: 100, ease: Power4.easeInOut}, '+=.5');
+    // tl.to(introProgressBar, .5, {opacity: 0, ease: Power4.easeInOut}, '-=.5')
+    // tl.to(introAfter, 1, {height: '100%', ease: Power4.easeInOut}, '-=.5')
     tl.to(main, 0, {background: '#e41143' }, '-=.5');
     tl.to(intro, 0, {display: 'none' });
 
@@ -59,7 +59,7 @@ const introTl = () => {
 const mainTl = () => {
 
     var tl = new TimelineMax();
-    tl.to(mainBoxesInner, .8, {width: '20%', ease: Power2.easeInOut});
+    tl.to(mainBoxesInner, .8, {width: '20%', ease: Power4.easeInOut});
     tl.to(mainBoxesInner, 0, {display: 'none' });
     tl.to(main, 0, {background: '#191A1E' });
 
@@ -78,22 +78,22 @@ const mainTl = () => {
     })
     tl.to(contentRight, 0, {visibility: 'visible'});
 
-    tl.to(logoH1After, 1, {width: '0%',  ease: Power2.easeInOut}, );
-    tl.to(bottomAfter, 1, {width: '0%', ease: Power2.easeInOut}, '-=.2' );
-    tl.to(menuAfter, 1, {width: '0%',  ease: Power2.easeInOut}, '-=1');
-    tl.to(menuItemsAfter, 1, {width: '0%',  ease: Power2.easeInOut}, '-=1.5' );
-    tl.to(scrollAfter, 1, {height: '0%', ease: Power2.easeInOut}, '-=1.5' );
-    tl.to(contentH1After, 1, {width: '0%',  ease: Power2.easeInOut}, '-=1.5' );
-    tl.to(contentH4After, 1, {width: '0%',  ease: Power2.easeInOut}, '-=1.5' );
-    tl.to(contentRightAfter, 1, {width: '0%', ease: Power2.easeInOut}, '-=1.5' );
-    tl.to(buttonsAfter, 1, {width: '0%', ease: Power2.easeInOut}, '-=1' );
+    tl.to(logoH1After, 1, {width: '0%',  ease: Power4.easeInOut}, );
+    tl.to(bottomAfter, 1, {width: '0%', ease: Power4.easeInOut}, '-=.2' );
+    tl.to(menuAfter, 1, {width: '0%',  ease: Power4.easeInOut}, '-=1');
+    tl.to(menuItemsAfter, 1, {width: '0%',  ease: Power4.easeInOut}, '-=1.5' );
+    tl.to(scrollAfter, 1, {height: '0%', ease: Power4.easeInOut}, '-=1.5' );
+    tl.to(contentH1After, 1, {width: '0%',  ease: Power4.easeInOut}, '-=1.5' );
+    tl.to(contentH4After, 1, {width: '0%',  ease: Power4.easeInOut}, '-=1.5' );
+    tl.to(contentRightAfter, 1, {width: '0%', ease: Power4.easeInOut}, '-=1.5' );
+    tl.to(buttonsAfter, 1, {width: '0%', ease: Power4.easeInOut}, '-=1' );
 
     Array.from(mainBoxes).forEach(box => {
         tl.to(box, 2, {height: '100%', zIndex: '0', borderRight: '1px solid rgba(184, 193, 236, .1)', ease: Power4.easeInOut }, '-=1.5' );
     });
 
-    tl.fromTo(circle, 2, {opacity: 0 }, {opacity: 1, ease: Power2.easeInOut}, );
-    tl.fromTo(rectangles, 2, {opacity: 0 }, {opacity: 1, ease: Power2.easeInOut}, );
+    tl.fromTo(circle, 2, {opacity: 0 }, {opacity: 1, ease: Power4.easeInOut}, );
+    tl.fromTo(rectangles, 2, {opacity: 0 }, {opacity: 1, ease: Power4.easeInOut}, );
 
     // Array.from(mainContent).forEach((content, i) => {
     //     tl.to(content, 0, {zIndex: '1' }, );

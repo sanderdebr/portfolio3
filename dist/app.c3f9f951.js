@@ -8020,14 +8020,14 @@ var buttonsAfter = CSSRulePlugin.getRule(".btn-group::after"); // ANIMATION
 var timeline = new TimelineMax(); // INTRO ANIMATION
 
 var introTl = function introTl() {
-  var tl = new TimelineMax(); // tl.to(introProgressBar, 1, {height: '280px', ease: Power2.easeInOut}, '+=.5')
-  // tl.to(introProgressBarInner, 1, {height: '300px', transformOrigin:"0 100%", ease: Power2.easeInOut}, '-=.55');
-  // tl.fromTo(introTitle, .7, {marginTop: 100, visibility: 'hidden'}, {marginTop: -75, visibility: 'visible', ease: Power2.easeInOut}, '-=.3');
-  // tl.to(introProgressBar, 1, {height: '100vw', ease: Power2.easeInOut}, '-=.67');
-  // tl.to(introProgressBarInner, 1, {height: '2000px', ease: Power2.easeInOut}, '-=1');
-  // tl.to(introTitle, .7, {marginTop: 100, ease: Power2.easeInOut}, '+=.5');
-  // tl.to(introProgressBar, .5, {opacity: 0, ease: Power2.easeInOut}, '-=.5')
-  // tl.to(introAfter, 1, {height: '100%', ease: Power2.easeInOut}, '-=.5')
+  var tl = new TimelineMax(); // tl.to(introProgressBar, 1, {height: '280px', ease: Power4.easeInOut}, '+=.5')
+  // tl.to(introProgressBarInner, 1, {height: '300px', transformOrigin:"0 100%", ease: Power4.easeInOut}, '-=.55');
+  // tl.fromTo(introTitle, .7, {marginTop: 100, visibility: 'hidden'}, {marginTop: -75, visibility: 'visible', ease: Power4.easeInOut}, '-=.3');
+  // tl.to(introProgressBar, 1, {height: '100vw', ease: Power4.easeInOut}, '-=.67');
+  // tl.to(introProgressBarInner, 1, {height: '2000px', ease: Power4.easeInOut}, '-=1');
+  // tl.to(introTitle, .7, {marginTop: 100, ease: Power4.easeInOut}, '+=.5');
+  // tl.to(introProgressBar, .5, {opacity: 0, ease: Power4.easeInOut}, '-=.5')
+  // tl.to(introAfter, 1, {height: '100%', ease: Power4.easeInOut}, '-=.5')
 
   tl.to(main, 0, {
     background: '#e41143'
@@ -8043,7 +8043,7 @@ var mainTl = function mainTl() {
   var tl = new TimelineMax();
   tl.to(mainBoxesInner, .8, {
     width: '20%',
-    ease: Power2.easeInOut
+    ease: Power4.easeInOut
   });
   tl.to(mainBoxesInner, 0, {
     display: 'none'
@@ -8084,39 +8084,39 @@ var mainTl = function mainTl() {
   });
   tl.to(logoH1After, 1, {
     width: '0%',
-    ease: Power2.easeInOut
+    ease: Power4.easeInOut
   });
   tl.to(bottomAfter, 1, {
     width: '0%',
-    ease: Power2.easeInOut
+    ease: Power4.easeInOut
   }, '-=.2');
   tl.to(menuAfter, 1, {
     width: '0%',
-    ease: Power2.easeInOut
+    ease: Power4.easeInOut
   }, '-=1');
   tl.to(menuItemsAfter, 1, {
     width: '0%',
-    ease: Power2.easeInOut
+    ease: Power4.easeInOut
   }, '-=1.5');
   tl.to(scrollAfter, 1, {
     height: '0%',
-    ease: Power2.easeInOut
+    ease: Power4.easeInOut
   }, '-=1.5');
   tl.to(contentH1After, 1, {
     width: '0%',
-    ease: Power2.easeInOut
+    ease: Power4.easeInOut
   }, '-=1.5');
   tl.to(contentH4After, 1, {
     width: '0%',
-    ease: Power2.easeInOut
+    ease: Power4.easeInOut
   }, '-=1.5');
   tl.to(contentRightAfter, 1, {
     width: '0%',
-    ease: Power2.easeInOut
+    ease: Power4.easeInOut
   }, '-=1.5');
   tl.to(buttonsAfter, 1, {
     width: '0%',
-    ease: Power2.easeInOut
+    ease: Power4.easeInOut
   }, '-=1');
   Array.from(mainBoxes).forEach(function (box) {
     tl.to(box, 2, {
@@ -8130,13 +8130,13 @@ var mainTl = function mainTl() {
     opacity: 0
   }, {
     opacity: 1,
-    ease: Power2.easeInOut
+    ease: Power4.easeInOut
   });
   tl.fromTo(rectangles, 2, {
     opacity: 0
   }, {
     opacity: 1,
-    ease: Power2.easeInOut
+    ease: Power4.easeInOut
   }); // Array.from(mainContent).forEach((content, i) => {
   //     tl.to(content, 0, {zIndex: '1' }, );
   // });
@@ -8310,7 +8310,7 @@ var initHovers = function initHovers() {
 initHovers();
 },{}],"js/scroll.js":[function(require,module,exports) {
 // VARIABLES
-var fadeSpeed = .5;
+var fadeSpeed = .4;
 var dotSpeed = 0;
 var mainContent = Array.from(document.querySelectorAll('.main__content'));
 var bottomNumFirst = document.querySelector('.bottom__num');
@@ -8331,7 +8331,7 @@ var swipeOut = function swipeOut(currentSlide, directionOut) {
     opacity: 0,
     zIndex: 0,
     transform: "translateY(".concat(directionOut, "100px)"),
-    ease: Power1.easeInOut
+    ease: Power4.easeInOut
   });
   return tl;
 }; // Volgende slide laten zien
@@ -8350,7 +8350,7 @@ var swipeIn = function swipeIn(nextSlide, directionIn) {
     opacity: 1,
     zIndex: 1,
     transform: 'translateY(0px)',
-    ease: Power1.easeInOut
+    ease: Power4.easeInOut
   });
   return tl;
 }; // Navigatie bolletje updaten
@@ -8438,7 +8438,27 @@ require('./scroll.js');
 
 window.addEventListener('load', function (event) {
   console.log("Time until everything loaded: ", Date.now() - timerStart, 'ms');
-});
+}); // Img hover effect 
+
+var profileImg = document.querySelector('.cutout');
+var touchMe = document.querySelector('.img__hover');
+var touched = false;
+
+if (!touched) {
+  profileImg.addEventListener('mouseover', function () {
+    console.log(touched);
+    touched = true; // touchMe.textContent = 'thank you';
+
+    var tl = new TimelineMax();
+    tl.to(touchMe, 4, {
+      opacity: '0',
+      textContent: 'thank you',
+      transform: 'translateY(200px)',
+      ease: Power4.easeInOut
+    });
+    return tl;
+  });
+}
 },{"./animations.js":"js/animations.js","./cursor.js":"js/cursor.js","./scroll.js":"js/scroll.js"}],"../../AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
@@ -8467,7 +8487,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "52409" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "60494" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

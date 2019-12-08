@@ -8424,6 +8424,82 @@ document.querySelector('.learnmore').addEventListener('click', function () {
   timeline.play();
 });
 initScroll();
+},{}],"js/menu.js":[function(require,module,exports) {
+var menuOpen = false;
+var menuBtn = document.querySelector('.main__menu, main__menu *');
+var main = document.querySelector('.main');
+var body = document.querySelector('.body');
+var menu = document.querySelector('.menu');
+var menuItems = document.querySelectorAll('.menu__item');
+var menuIconBefore = CSSRulePlugin.getRule(".menu__h2::before");
+var menuIconAfter = CSSRulePlugin.getRule(".menu__h2::after");
+menuBtn.addEventListener('click', function () {
+  var tl = new TimelineMax();
+
+  if (menuOpen === false) {
+    menuOpen = true;
+    tl.to(body, 0, {
+      backgroundColor: '#fffffe',
+      ease: Power4.easeInOut
+    });
+    tl.to(main, .5, {
+      transform: 'scale(.8) translateX(250px)',
+      ease: Power4.easeInOut
+    });
+    tl.fromTo(menu, .5, {
+      transform: 'translateX(-300px)',
+      zIndex: 0,
+      opacity: 0
+    }, {
+      zIndex: 1000,
+      opacity: 1,
+      transform: 'translateX(0px)',
+      ease: Power4.easeInOut
+    });
+    Array.from(menuItems).forEach(function (item, i) {
+      tl.fromTo(item, .3, {
+        transform: 'translateX(-300px)',
+        opacity: 0
+      }, {
+        opacity: 1,
+        transform: 'translateX(0px)',
+        ease: Power4.easeInOut
+      }, "-=.5");
+    });
+  } else if (menuOpen) {
+    menuOpen = false;
+    tl.fromTo(menu, .5, {
+      transform: 'translateX(0px)',
+      zIndex: 1000,
+      opacity: 1
+    }, {
+      zIndex: 0,
+      opacity: 0,
+      transform: 'translateX(-300px)',
+      ease: Power4.easeInOut
+    });
+    Array.from(menuItems).forEach(function (item, i) {
+      tl.fromTo(item, .3, {
+        transform: 'translateX(0px)',
+        opacity: 1
+      }, {
+        opacity: 0,
+        transform: 'translateX(-300px)',
+        ease: Power4.easeInOut
+      }, "-=.5");
+    });
+    tl.to(main, .5, {
+      transform: 'scale(1) translateX(0px)',
+      ease: Power4.easeInOut
+    });
+    tl.to(body, 0, {
+      background: 'white',
+      ease: Power4.easeInOut
+    });
+  }
+
+  return tl;
+});
 },{}],"js/app.js":[function(require,module,exports) {
 /*
 parcel build index.html --public-url ./
@@ -8435,6 +8511,8 @@ require('./animations.js');
 require('./cursor.js');
 
 require('./scroll.js');
+
+require('./menu.js');
 
 window.addEventListener('load', function (event) {
   console.log("Time until everything loaded: ", Date.now() - timerStart, 'ms');
@@ -8459,7 +8537,7 @@ if (!touched) {
     return tl;
   });
 }
-},{"./animations.js":"js/animations.js","./cursor.js":"js/cursor.js","./scroll.js":"js/scroll.js"}],"../../AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+},{"./animations.js":"js/animations.js","./cursor.js":"js/cursor.js","./scroll.js":"js/scroll.js","./menu.js":"js/menu.js"}],"../../AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -8487,7 +8565,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "60494" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "49774" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

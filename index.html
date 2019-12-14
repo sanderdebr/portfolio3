@@ -12,6 +12,7 @@
 <body class="body">
     <section class="menu">
         <ul class="menu__list">
+            <li class="menu__item"><div class="menu__close"></div></li>
             <li class="menu__item">Home</li>
             <li class="menu__item">About me</li>
             <li class="menu__item">Projects</li>
@@ -50,6 +51,7 @@
             <div class="scroll__dot active" data-slide="1"></div>
             <div class="scroll__dot" data-slide="2"></div>
             <div class="scroll__dot" data-slide="3"></div>
+            <div class="scroll__dot" data-slide="4"></div>
         </div>
         <div class="main__bottom">
             <div class="bottom__numbers">
@@ -137,9 +139,20 @@
         </div>
         <div class="main__content" data-slide="3">
             <div class="content__left">
-                <h1 class="content__h1">About me</h1>
+                <h1 class="content__h1">Projects</h1>
                 <h4 class="content__h4">
                     Some text about me/
+                </h4>
+            </div>
+            <div class="content__right">
+                content
+            </div>
+        </div>
+        <div class="main__content" data-slide="4">
+            <div class="content__left">
+                <h1 class="content__h1">About me</h1>
+                <h4 class="content__h4">
+                    Projects
                 </h4>
             </div>
             <div class="content__right">
@@ -158,6 +171,9 @@
             <div class="rectangle__little"></div>
         </div>
     </section>
+
+
+
     <div class="cursor cursor--small"></div>
     <canvas class="cursor cursor--canvas" resize></canvas>
     

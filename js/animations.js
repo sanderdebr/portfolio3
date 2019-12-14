@@ -33,6 +33,8 @@ const rectangles = document.querySelector('.rectangles');
 const buttons = document.querySelectorAll('.btn-group');
 const buttonsAfter = CSSRulePlugin.getRule(".btn-group::after");
 
+const body = document.querySelector('.body');
+
 // ANIMATION
 const timeline = new TimelineMax();
 
@@ -41,15 +43,15 @@ const timeline = new TimelineMax();
 const introTl = () => {
 
     var tl = new TimelineMax();
-    tl.to(introProgressBar, 1, {height: '280px', ease: Power4.easeInOut}, '+=.5')
-    tl.to(introProgressBarInner, 1, {height: '300px', transformOrigin:"0 100%", ease: Power4.easeInOut}, '-=.55');
-    tl.fromTo(introTitle, .7, {marginTop: 100, visibility: 'hidden'}, {marginTop: -75, visibility: 'visible', ease: Power4.easeInOut}, '-=.3');
-    tl.to(introProgressBar, 1, {height: '100vw', ease: Power4.easeInOut}, '-=.67');
-    tl.to(introProgressBarInner, 1, {height: '2000px', ease: Power4.easeInOut}, '-=1');
-    tl.to(introTitle, .7, {marginTop: 100, ease: Power4.easeInOut}, '+=.5');
-    tl.to(introProgressBar, .5, {opacity: 0, ease: Power4.easeInOut}, '-=.5')
-    tl.to(introAfter, 1, {height: '100%', ease: Power4.easeInOut}, '-=.5')
-    tl.to(main, 0, {background: '#e41143' }, '-=.5');
+    // tl.to(introProgressBar, 1, {height: '280px', ease: Power4.easeInOut}, '+=.5')
+    // tl.to(introProgressBarInner, 1, {height: '300px', transformOrigin:"0 100%", ease: Power4.easeInOut}, '-=.55');
+    // tl.fromTo(introTitle, .7, {marginTop: 100, visibility: 'hidden'}, {marginTop: -75, visibility: 'visible', ease: Power4.easeInOut}, '-=.3');
+    // tl.to(introProgressBar, 1, {height: '100vw', ease: Power4.easeInOut}, '-=.67');
+    // tl.to(introProgressBarInner, 1, {height: '2000px', ease: Power4.easeInOut}, '-=1');
+    // tl.to(introTitle, .7, {marginTop: 100, ease: Power4.easeInOut}, '+=.5');
+    // tl.to(introProgressBar, .5, {opacity: 0, ease: Power4.easeInOut}, '-=.5')
+    // tl.to(introAfter, 1, {height: '100%', ease: Power4.easeInOut}, '-=.5')
+    // tl.to(main, 0, {background: '#e41143' }, '-=.5');
     tl.to(intro, 0, {display: 'none' });
 
     return tl;
@@ -98,6 +100,8 @@ const mainTl = () => {
     // Array.from(mainContent).forEach((content, i) => {
     //     tl.to(content, 0, {zIndex: '1' }, );
     // });
+
+    body.style.background = '#e41143';
 
     return tl;
 }

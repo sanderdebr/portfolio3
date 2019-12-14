@@ -8015,7 +8015,8 @@ var contentRightAfter = CSSRulePlugin.getRule(".content__right::after");
 var circle = document.querySelector('.circle');
 var rectangles = document.querySelector('.rectangles');
 var buttons = document.querySelectorAll('.btn-group');
-var buttonsAfter = CSSRulePlugin.getRule(".btn-group::after"); // ANIMATION
+var buttonsAfter = CSSRulePlugin.getRule(".btn-group::after");
+var body = document.querySelector('.body'); // ANIMATION
 
 var timeline = new TimelineMax(); // INTRO ANIMATION
 
@@ -8028,10 +8029,8 @@ var introTl = function introTl() {
   // tl.to(introTitle, .7, {marginTop: 100, ease: Power4.easeInOut}, '+=.5');
   // tl.to(introProgressBar, .5, {opacity: 0, ease: Power4.easeInOut}, '-=.5')
   // tl.to(introAfter, 1, {height: '100%', ease: Power4.easeInOut}, '-=.5')
+  // tl.to(main, 0, {background: '#e41143' }, '-=.5');
 
-  tl.to(main, 0, {
-    background: '#e41143'
-  }, '-=.5');
   tl.to(intro, 0, {
     display: 'none'
   });
@@ -8141,6 +8140,7 @@ var mainTl = function mainTl() {
   //     tl.to(content, 0, {zIndex: '1' }, );
   // });
 
+  body.style.background = '#e41143';
   return tl;
 };
 
@@ -8433,68 +8433,68 @@ var menu = document.querySelector('.menu');
 var menuItems = document.querySelectorAll('.menu__item');
 var menuIconBefore = CSSRulePlugin.getRule(".menu__h2::before");
 var menuIconAfter = CSSRulePlugin.getRule(".menu__h2::after");
+var menuClose = document.querySelector('.menu__item:first-child'); // Close menu
+
+menuClose.addEventListener('click', function () {
+  var tl = new TimelineMax();
+  menuOpen = false;
+  Array.from(menuItems).forEach(function (item) {
+    tl.fromTo(item, .15, {
+      transform: 'translateX(0px)',
+      opacity: 1
+    }, {
+      opacity: 0,
+      transform: 'translateX(-50px)',
+      ease: Back.easeInOut
+    });
+  });
+  tl.fromTo(menu, .7, {
+    transform: 'translateY(0vh)',
+    zIndex: 1000,
+    opacity: 1
+  }, {
+    zIndex: 0,
+    opacity: 1,
+    transform: 'translateY(-100vh)',
+    ease: Back.easeInOut
+  });
+  tl.to(main, 1.2, {
+    transform: 'translateY(0vh)',
+    ease: Back.easeInOut
+  }, '-=.2');
+  return tl;
+}); // Open menu
+
 menuBtn.addEventListener('click', function () {
   var tl = new TimelineMax();
 
   if (menuOpen === false) {
     menuOpen = true;
-    tl.to(body, 0, {
-      backgroundColor: '#fffffe',
-      ease: Power4.easeInOut
-    });
-    tl.to(main, .5, {
-      transform: 'scale(.8) translateX(250px)',
-      ease: Power4.easeInOut
-    });
-    tl.fromTo(menu, .5, {
-      transform: 'translateX(-300px)',
+    tl.to(main, .8, {
+      transform: 'translateY(100vh)',
+      ease: Power1.easeInOut
+    }, '-=.2');
+    tl.fromTo(menu, .7, {
+      transform: 'translateY(-100vh)',
       zIndex: 0,
-      opacity: 0
+      opacity: 1
     }, {
       zIndex: 1000,
       opacity: 1,
-      transform: 'translateX(0px)',
-      ease: Power4.easeInOut
+      transform: 'translateY(0vh)',
+      ease: Power1.easeInOut
     });
-    Array.from(menuItems).forEach(function (item, i) {
-      tl.fromTo(item, .3, {
-        transform: 'translateX(-300px)',
+    Array.from(menuItems).forEach(function (item) {
+      tl.fromTo(item, .15, {
+        transform: 'translateX(-50px)',
+        zIndex: 0,
         opacity: 0
       }, {
+        zIndex: 1,
         opacity: 1,
         transform: 'translateX(0px)',
-        ease: Power4.easeInOut
-      }, "-=.5");
-    });
-  } else if (menuOpen) {
-    menuOpen = false;
-    tl.fromTo(menu, .5, {
-      transform: 'translateX(0px)',
-      zIndex: 1000,
-      opacity: 1
-    }, {
-      zIndex: 0,
-      opacity: 0,
-      transform: 'translateX(-300px)',
-      ease: Power4.easeInOut
-    });
-    Array.from(menuItems).forEach(function (item, i) {
-      tl.fromTo(item, .3, {
-        transform: 'translateX(0px)',
-        opacity: 1
-      }, {
-        opacity: 0,
-        transform: 'translateX(-300px)',
-        ease: Power4.easeInOut
-      }, "-=.5");
-    });
-    tl.to(main, .5, {
-      transform: 'scale(1) translateX(0px)',
-      ease: Power4.easeInOut
-    });
-    tl.to(body, 0, {
-      background: 'white',
-      ease: Power4.easeInOut
+        ease: Back.easeInOut
+      });
     });
   }
 
@@ -8565,7 +8565,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "49774" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "49930" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

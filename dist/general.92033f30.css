@@ -16,6 +16,11 @@
   grid-template-columns: repeat(5, 1fr);
   grid-template-rows: repeat(6, 1fr);
 }
+@media all and (max-width: 920px) {
+  .main {
+    grid-template-columns: 20vw 20vw 20vw 20vw 20vw;
+  }
+}
 
 .main__box {
   border-right: 0px solid rgba(255, 255, 254, 0.1);
@@ -525,7 +530,7 @@
 
 @media all and (max-width: 920px) {
   .main__content[data-slide="1"] .content__right {
-    margin-top: 120px;
+    margin-top: 30vw;
   }
 }
 

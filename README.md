@@ -1,1 +1,1 @@
-Personal blog build in vanilla JS with GSAP.
+Personal portfolio build in vanilla JS with GSAP.

@@ -20,6 +20,7 @@ $screenHeight: 650px;
 $slide1: '.main__content[data-slide="1"]';
 $slide2: '.main__content[data-slide="2"]';
 $slide3: '.main__content[data-slide="3"]';
+$slide4: '.main__content[data-slide="4"]';
 
 @mixin after-black {
     content: "";

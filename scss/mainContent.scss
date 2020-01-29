@@ -344,5 +344,180 @@
     font-weight: 300;
 }
 
-// MAIN CONTENT THIRD SLIDE PROJECTS
+#{$slide2} .exp__right .exp__role {
+    padding-top: 0px;
+}
 
+// MAIN CONTENT THIRD SLIDE EDUCATION
+
+#{$slide3} {
+    grid-column: 2/span 3;
+    @media all and (max-width: $mobile) {
+        grid-column: 1 / span 7;
+        display: flex;
+        justify-content: flex-start;
+        flex-direction: column;
+    }
+}
+
+#{$slide3} .content__left {
+    width: 240px;
+    padding: 0 20px 0 0;
+    @media all and (max-width: $mobile) {
+        width: auto;
+    }
+}
+
+#{$slide3} .content__right {
+    width: 75%;
+    align-self: end;
+    visibility: hidden;
+    @media all and (max-width: $mobile) {
+        width: 100%;
+    }
+}
+
+#{$slide3} .content__h1 {
+    font-size: 2em;
+    padding: 20px 0 10px 0;
+    line-height: 0;
+}
+
+#{$slide3} .content__h4 {
+    font-size: 1em;
+    line-height: 2em;
+}
+
+#{$slide3} .content__divider {
+    width: 100%;
+    height: 1px;
+    background: rgba(255, 255, 255, .1);
+}
+
+#{$slide3} .content__exp {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 30px;
+    transition: all 250ms ease-in-out;
+}
+
+#{$slide3} .content__exp:hover {
+    background: rgba(255, 255, 255, .1);
+}
+
+#{$slide3} .exp__left, #{$slide3} .exp__right {
+    width: 50%;
+    font-weight: 300;
+}
+
+#{$slide3} .exp__company {
+    padding-left: 30px;
+    font-weight: 600;
+}
+
+#{$slide3} .exp__role {
+    padding-top: 10px;
+    color: lightslategray;
+    display: block;
+    font-weight: 300;
+}
+
+#{$slide3} .exp__right .exp__role {
+    padding-top: 0px;
+}
+
+#{$slide3} .exp__list {
+    list-style-type: circle;
+    margin-left: 15px;
+    margin-top: 20px;
+    padding: 0;
+    margin-bottom: 0;
+    .exp__list-item {
+        padding-bottom: 10px;
+        &:last-child {
+            padding-bottom: 0;
+        }
+    }
+}
+
+// MAIN CONTENT FOURTH SLIDE PROJECTS
+
+#{$slide4} {
+    grid-column: 2/span 3;
+    @media all and (max-width: $mobile) {
+        grid-column: 1 / span 7;
+        display: flex;
+        justify-content: flex-start;
+        flex-direction: column;
+    }
+}
+
+#{$slide4} .content__left {
+    width: 240px;
+    padding: 0 20px 0 0;
+    @media all and (max-width: $mobile) {
+        width: auto;
+    }
+}
+
+#{$slide4} .content__right {
+    width: 75%;
+    align-self: end;
+    visibility: hidden;
+    display: flex;
+    flex-direction: column;
+    @media all and (max-width: $mobile) {
+        width: 100%;
+    }
+}
+
+#{$slide4} .content__h1 {
+    font-size: 2em;
+    padding: 20px 0 10px 0;
+    line-height: 0;
+}
+
+#{$slide4} .content__h4 {
+    font-size: 1em;
+    line-height: 2em;
+}
+
+#{$slide4} .projects__filter {
+    display: flex;
+    .project__filter-item {
+        padding: .7em;
+        border: 1px solid slategray;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-right: .7em;
+    }
+}
+
+#{$slide4} .projects__list {
+    margin-top: 1.4em;
+    display: flex;
+    flex-wrap: wrap;
+    max-height: 55vh;
+    overflow: overlay;
+    &::-webkit-scrollbar-track {
+        -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+        background-color: slategray;
+    }
+    &::-webkit-scrollbar {
+        width: 3px;
+        background-color: slategray;
+    }
+    &::-webkit-scrollbar-thumb {
+        background-color: $main1;
+    }
+    .project__item {
+        width: 28%;
+        height: 200px;
+        padding: .7em;
+        border: 1px solid slategray;
+        margin-right: .7em;
+        margin-bottom: .7em;
+    }
+}

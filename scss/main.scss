@@ -306,11 +306,17 @@
     background: $white;
     margin-bottom: 2.5em;
     transition: all ease 500ms;
+    &:hover {
+        transform: scale(2);
+    }
 }
 
 .scroll__dot.active {
     transition: all ease 500ms;
     height: 60px;
+    &:hover {
+        transform: scale(1);
+    }
 }
 
 // CIRCLE BACKGROUND

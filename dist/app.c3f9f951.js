@@ -8409,14 +8409,32 @@ var scrollProjects = function scrollProjects(event) {
   dotIn(nextSlide);
   dotOut(currentSlide); // 5. Volgende slide tonen
 
-  timeline.play(); // 3 sec eventlistenere uitschakelen
+  timeline.play(); // 6. Projects gedeelte scroll uitschakelen
 
-  mainContent.forEach(function (item) {
-    item.removeEventListener("wheel", scrollProjects);
+  if (currentSlide === 3) {
+    var projectSection = document.querySelector('.main__content.active');
+    projectSection.removeEventListener("wheel", scrollProjects);
+  } else {
+    // Eventlisteners 700ms uitschakelen
+    mainContent.forEach(function (item) {
+      item.removeEventListener("wheel", scrollProjects);
+    });
+    setTimeout(initScroll, 700);
+  }
+}; // Dots als navigatie
+
+
+var dots = document.querySelectorAll('.scroll__dot');
+dots.forEach(function (dot) {
+  return dot.addEventListener("click", function (e) {
+    nextSlide = e.target.getAttribute("data-slide");
+    currentSlide = document.querySelector('.main__content.active').getAttribute("data-slide");
+    swipeIn(nextSlide, '+');
+    swipeOut(currentSlide, '-');
+    dotIn(nextSlide);
+    dotOut(currentSlide);
   });
-  setTimeout(initScroll, 500);
-}; // Learn more klik naar tweede slide
-
+}); // Learn more klik naar tweede slide
 
 document.querySelector('.learnmore').addEventListener('click', function () {
   timeline.add(swipeOut(1, '-'));
@@ -8424,6 +8442,18 @@ document.querySelector('.learnmore').addEventListener('click', function () {
   dotIn(2);
   dotOut(1);
   timeline.play();
+}); // View projects naar vierde slide
+
+document.querySelector('.viewprojects').addEventListener('click', function () {
+  viewProjects = true;
+  timeline.add(swipeOut(1, '-'));
+  timeline.add(swipeIn(4, '+'));
+  dotIn(4);
+  dotOut(1);
+  timeline.play(); // Remove slide controls
+
+  var projectSection = document.querySelector('.main__content.active');
+  projectSection.removeEventListener("wheel", scrollProjects);
 });
 initScroll();
 },{}],"js/menu.js":[function(require,module,exports) {
@@ -8567,7 +8597,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "62714" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "59737" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

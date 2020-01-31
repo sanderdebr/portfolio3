@@ -8,8 +8,8 @@
     background: $black;
     color: $white;
     display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    grid-template-rows: repeat(6, 1fr);
+    grid-template-columns: repeat(5, 20vw);
+    grid-template-rows: repeat(2, 6vh);
     @media all and (max-width: $mobile) {
         grid-template-columns: 20vw 20vw 20vw 20vw 20vw;
     }
@@ -57,6 +57,7 @@
 }
 
 .logo__h1 {
+    z-index: 3;
     width: 190px;
     visibility: hidden;
     font-family: $font1;
@@ -268,7 +269,7 @@
     font-family: $font1;
     visibility: hidden;
     font-weight: 600;
-    font-size: .8em;
+    font-size: .9em;
     transition: all ease 500ms;
 }
 
@@ -307,6 +308,7 @@
     margin-bottom: 2.5em;
     transition: all ease 500ms;
     &:hover {
+        cursor: pointer;
         transform: scale(2);
     }
 }

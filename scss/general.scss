@@ -2,7 +2,7 @@
 @import './main.scss';
 @import './mainContent.scss';
 @import './intro';
-@import './cursor';
+// @import './cursor';
 @import './menu';
 
 /********* GENERAL *********/
@@ -37,4 +37,5 @@ section {
 .link:hover {
     color: $main1;
     transition: all 500ms ease;
+    cursor: pointer;
 }

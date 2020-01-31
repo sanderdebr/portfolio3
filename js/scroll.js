@@ -144,4 +144,16 @@ document.querySelector('.viewprojects').addEventListener('click', () => {
     projectSection.removeEventListener("wheel", scrollProjects);
 });
 
+// Logo naar eerste slide
+document.querySelector('.logo__h1').addEventListener('click', () => {
+    currentSlide = document.querySelector('.main__content.active').getAttribute("data-slide");
+    if (currentSlide == 1) return;
+    nextSlide = 1;
+    swipeIn(nextSlide, '+');
+    swipeOut(currentSlide, '-');
+    dotIn(nextSlide);
+    dotOut(currentSlide);
+});
+
+
 initScroll();

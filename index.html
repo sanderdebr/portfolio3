@@ -8,6 +8,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Sander de Bruijn - Portfolio 2020</title>
     <link rel="stylesheet" href="./scss/general.scss">
+    <link href="https://cdn.lineicons.com/1.0.1/LineIcons.min.css" rel="stylesheet">
 </head>
 <body class="body">
     <section class="menu">
@@ -87,7 +88,7 @@
                     </span>
                 </h4>
                 <div class="btn-group">
-                    <button class="btn btn--primary link viewprojects">View projects</button>
+                    <button class="btn btn--primary link viewprojects"> View projects</button>
                     <button class="btn btn--primary link">Get in touch</button>
                     <span class="btn--extended">Or learn more <span class="learnmore link">about me.</span></span>
                 </div>
@@ -193,24 +194,44 @@
             </div>
         </div>
         <div class="main__content" data-slide="4">
-            <div class="content__left">
-                <h1 class="content__h1">Projects</h1>
-                <h4 class="content__h4">
-                    Some of the project I'm proud of.
-                </h4>
-            </div>
             <div class="content__right">
-                <div class="projects__filter">
-                    <div class="project__filter-item active">All</div>
-                    <div class="project__filter-item">Design</div>
-                    <div class="project__filter-item">React</div>
-                    <div class="project__filter-item">Redux</div>
-                    <div class="project__filter-item">GraphQL</div>
+
+                <div class="project__details">
+                    <div class="project__details-close">
+                        <i class="lni-close"></i>
+                    </div>
+                    <div class="project__details-header">
+                        <div class="project__details-left">
+                            <h1 class="project__details-title">Smart Art</h1>
+                            <p class="project__details-desc">
+                                While brainstorming for projects to use and improve my Javascript skills by desining and building a web application using an API, I stumbled upon the Harvard Art API. I came up with the idea to show artworks, retrieved through the Hardvard Art API, based on the users interest and then improving the recommandations based on their liked art works.
+<br><br>
+It was the perfect project to use my skills learned from the Complete Javascript Course, using modules, state and MVC. Besides coding the project from scratch, I also designed the layout using Adobe XD.
+                            </p>
+                        </div>
+                        <div class="project__details-right">
+                            <p class="project__details-header">Technologies used</p>
+                            <p class="project__details-tech">Javascript ES6+, Modules, MVC, LocalStorage</p>
+                            <div class="project__details-divider"></div>
+                            <p class="project__details-header">Show me!</p>
+                            <div class="project__details-buttons">
+                                <div class="project__details-button btn">View live</div>
+                                <div class="project__details-button btn">View code</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project__details-images">
+                        <img src="./img/smartart.jpg" />
+                        <img src="./img/smartart.jpg" />
+                    </div>
                 </div>
+
+                <div id="projects__container"></div>
                 <div class="projects__list">
-                    <div class="project__item">
+
+                    <div class="project__item" data-tag="Vanilla JS, Design">
                         <div class="project__item-image" style="background-image:url('./img/smartart.jpg')">
-                            <span class="project__item-image--title">VIEW</span>
+                            <span class="project__item-image--title"><i class="lni-eye"></i> View project</span>
                         </div>
                         <div class="project__item-desc">
                             <h5 class="project__title">SmartArt Hardvard Art Museum</h5>
@@ -222,18 +243,65 @@
                             </div>
                         </div>
                     </div>
-                    <div class="project__item">box</div>
-                    <div class="project__item">box</div>
-                    <div class="project__item">box</div>
-                    <div class="project__item">box</div>
-                    <div class="project__item">box</div>
-                    <div class="project__item">box</div>
-                    <div class="project__item">box</div>
-                    <div class="project__item">box</div>
-                    <div class="project__item">box</div>
-                    <div class="project__item">box</div>
-                    <div class="project__item">box</div>
-                </diva>
+                    <div class="project__item" data-tag="Vanilla JS">
+                        <div class="project__item-image" style="background-image:url('./img/forkify.jpg')">
+                            <span class="project__item-image--title"><i class="lni-eye"></i> View project</span>
+                        </div>
+                        <div class="project__item-desc">
+                            <h5 class="project__title">Forkify</h5>
+                            <p class="project__shortDesc">Web app to discover recipes, create shopping lists and like your favorite recipes.</p>
+                            <div class="project__item-tags">
+                                <span class="project__item-tag">Vanilla JS - ES6+</span>
+                                <span class="project__item-tag">MVC model</span>
+                                <span class="project__item-tag">Food 2 Fork API</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project__item" data-tag="React, Node, SQL">
+                        <div class="project__item-image" style="background-image:url('./img/clarify.jpg')">
+                            <span class="project__item-image--title"><i class="lni-eye"></i> View project</span>
+                        </div>
+                        <div class="project__item-desc">
+                            <h5 class="project__title">Clarify</h5>
+                            <p class="project__shortDesc">Face recognition web app using the Clarifai API with authentication.</p>
+                            <div class="project__item-tags">
+                                <span class="project__item-tag">React</span>
+                                <span class="project__item-tag">Node with Express</span>
+                                <span class="project__item-tag">PostgreSQL</span>
+                                <span class="project__item-tag">Clarifai API</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project__item" data-tag="React, Gatsby, GraphQL">
+                        <div class="project__item-image" style="background-image:url('./img/blog.jpg')">
+                            <span class="project__item-image--title"><i class="lni-eye"></i> View project</span>
+                        </div>
+                        <div class="project__item-desc">
+                            <h5 class="project__title">Blog</h5>
+                            <p class="project__shortDesc">Personal blog using the Contentful CMS.</p>
+                            <div class="project__item-tags">
+                                <span class="project__item-tag">React</span>
+                                <span class="project__item-tag">Node with Express</span>
+                                <span class="project__item-tag">PostgreSQL</span>
+                                <span class="project__item-tag">Clarifai API</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project__item" data-tag="Design">
+                        <div class="project__item-image" style="background-image:url('./img/ecommerce.jpg')">
+                            <span class="project__item-image--title"><i class="lni-eye"></i> View project</span>
+                        </div>
+                        <div class="project__item-desc">
+                            <h5 class="project__title">Ecommerce Redesign</h5>
+                            <p class="project__shortDesc">Complete redesign of a big retailer</p>
+                            <div class="project__item-tags">
+                                <span class="project__item-tag">Design</span>
+                                <span class="project__item-tag">Vanilla JS - ES6+</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                </div>
             </div>
         </div>
         <div class="circle">
@@ -262,6 +330,10 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/paper.js/0.12.0/paper-core.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/simplex-noise/2.4.0/simplex-noise.min.js"></script>
     <script src="https://cdn.linearicons.com/free/1.0.0/svgembedder.min.js"></script>
+    <script crossorigin src="https://unpkg.com/react@16/umd/react.production.min.js"></script>
+
+    <script crossorigin src="https://unpkg.com/react@16/umd/react.production.min.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.production.min.js"></script>
 
     <script src="./js/app.js"></script>
 

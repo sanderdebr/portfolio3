@@ -8148,169 +8148,7 @@ var mainTl = function mainTl() {
 
 timeline.add(introTl());
 timeline.add(mainTl());
-},{"http":"../../AppData/Roaming/npm/node_modules/parcel-bundler/node_modules/stream-http/index.js"}],"js/cursor.js":[function(require,module,exports) {
-// set the starting position of the cursor outside of the screen
-var clientX = -100;
-var clientY = -100;
-var innerCursor = document.querySelector(".cursor--small");
-
-var initCursor = function initCursor() {
-  // add listener to track the current mouse position
-  document.addEventListener("mousemove", function (e) {
-    clientX = e.clientX;
-    clientY = e.clientY;
-  }); // transform the innerCursor to the current mouse position
-  // use requestAnimationFrame() for smooth performance
-
-  var render = function render() {
-    innerCursor.style.transform = "translate(".concat(clientX, "px, ").concat(clientY, "px)");
-    requestAnimationFrame(render);
-  };
-
-  requestAnimationFrame(render);
-};
-
-initCursor();
-var lastX = 0;
-var lastY = 0;
-var isStuck = false;
-var showCursor = false;
-var group, stuckX, stuckY, fillOuterCursor;
-
-var initCanvas = function initCanvas() {
-  var canvas = document.querySelector(".cursor--canvas");
-  var shapeBounds = {
-    width: 75,
-    height: 75
-  };
-  paper.setup(canvas);
-  var strokeColor = "#e41143";
-  var strokeWidth = 1;
-  var segments = 8;
-  var radius = 15; // we'll need these later for the noisy circle
-
-  var noiseScale = 50; // speed
-
-  var noiseRange = 4; // range of distortion
-
-  var isNoisy = false; // state
-  // the base shape for the noisy circle
-
-  var polygon = new paper.Path.RegularPolygon(new paper.Point(0, 0), segments, radius);
-  polygon.strokeColor = strokeColor;
-  polygon.strokeWidth = strokeWidth;
-  polygon.smooth();
-  group = new paper.Group([polygon]);
-  group.applyMatrix = false;
-  var noiseObjects = polygon.segments.map(function () {
-    return new SimplexNoise();
-  });
-  var bigCoordinates = []; // function for linear interpolation of values
-
-  var lerp = function lerp(a, b, n) {
-    return (1 - n) * a + n * b;
-  }; // function to map a value from one range to another range
-
-
-  var map = function map(value, in_min, in_max, out_min, out_max) {
-    return (value - in_min) * (out_max - out_min) / (in_max - in_min) + out_min;
-  }; // the draw loop of Paper.js
-  // (60fps with requestAnimationFrame under the hood)
-
-
-  paper.view.onFrame = function (event) {
-    // using linear interpolation, the circle will move 0.2 (20%)
-    // of the distance between its current position and the mouse
-    // coordinates per Frame
-    if (!isStuck) {
-      // move circle around normally
-      lastX = lerp(lastX, clientX, 0.2);
-      lastY = lerp(lastY, clientY, 0.2);
-      group.position = new paper.Point(lastX, lastY);
-    } else if (isStuck) {
-      // fixed position on a nav item
-      lastX = lerp(lastX, stuckX, 0.2);
-      lastY = lerp(lastY, stuckY, 0.2);
-      group.position = new paper.Point(lastX, lastY);
-    }
-
-    if (isStuck && polygon.bounds.width < shapeBounds.width) {
-      // scale up the shape 
-      polygon.scale(1.2);
-    } else if (!isStuck && polygon.bounds.width > 30) {
-      // remove noise
-      if (isNoisy) {
-        polygon.segments.forEach(function (segment, i) {
-          segment.point.set(bigCoordinates[i][0], bigCoordinates[i][1]);
-        });
-        isNoisy = false;
-        bigCoordinates = [];
-      } // scale down the shape
-
-
-      var scaleDown = 0.92;
-      polygon.scale(scaleDown);
-    } // while stuck and big, apply simplex noise
-
-
-    if (isStuck && polygon.bounds.width >= shapeBounds.width) {
-      isNoisy = true; // first get coordinates of large circle
-
-      if (bigCoordinates.length === 0) {
-        polygon.segments.forEach(function (segment, i) {
-          bigCoordinates[i] = [segment.point.x, segment.point.y];
-        });
-      } // loop over all points of the polygon
-
-
-      polygon.segments.forEach(function (segment, i) {
-        // get new noise value
-        // we divide event.count by noiseScale to get a very smooth value
-        var noiseX = noiseObjects[i].noise2D(event.count / noiseScale, 0);
-        var noiseY = noiseObjects[i].noise2D(event.count / noiseScale, 1); // map the noise value to our defined range
-
-        var distortionX = map(noiseX, -1, 1, -noiseRange, noiseRange);
-        var distortionY = map(noiseY, -1, 1, -noiseRange, noiseRange); // apply distortion to coordinates
-
-        var newX = bigCoordinates[i][0] + distortionX;
-        var newY = bigCoordinates[i][1] + distortionY; // set new (noisy) coodrindate of point
-
-        segment.point.set(newX, newY);
-      });
-    }
-
-    polygon.smooth();
-  };
-};
-
-initCanvas();
-
-var initHovers = function initHovers() {
-  // find the center of the link element and set stuckX and stuckY
-  // these are needed to set the position of the noisy circle
-  var handleMouseEnter = function handleMouseEnter(e) {
-    var navItem = e.currentTarget;
-    var navItemBox = navItem.getBoundingClientRect();
-    stuckX = Math.round(navItemBox.left + navItemBox.width / 2);
-    stuckY = Math.round(navItemBox.top + navItemBox.height / 2);
-    isStuck = true;
-  }; // reset isStuck on mouseLeave
-
-
-  var handleMouseLeave = function handleMouseLeave() {
-    isStuck = false;
-  }; // add event listeners to all items
-
-
-  var linkItems = document.querySelectorAll(".link");
-  linkItems.forEach(function (item) {
-    item.addEventListener("mouseenter", handleMouseEnter);
-    item.addEventListener("mouseleave", handleMouseLeave);
-  });
-};
-
-initHovers();
-},{}],"js/scroll.js":[function(require,module,exports) {
+},{"http":"../../AppData/Roaming/npm/node_modules/parcel-bundler/node_modules/stream-http/index.js"}],"js/scroll.js":[function(require,module,exports) {
 // VARIABLES
 var fadeSpeed = .4;
 var dotSpeed = 0;
@@ -8454,6 +8292,16 @@ document.querySelector('.viewprojects').addEventListener('click', function () {
 
   var projectSection = document.querySelector('.main__content.active');
   projectSection.removeEventListener("wheel", scrollProjects);
+}); // Logo naar eerste slide
+
+document.querySelector('.logo__h1').addEventListener('click', function () {
+  currentSlide = document.querySelector('.main__content.active').getAttribute("data-slide");
+  if (currentSlide == 1) return;
+  nextSlide = 1;
+  swipeIn(nextSlide, '+');
+  swipeOut(currentSlide, '-');
+  dotIn(nextSlide);
+  dotOut(currentSlide);
 });
 initScroll();
 },{}],"js/menu.js":[function(require,module,exports) {
@@ -8480,7 +8328,7 @@ menuClose.addEventListener('click', function () {
       ease: Back.easeInOut
     });
   });
-  tl.fromTo(menu, .7, {
+  tl.fromTo(menu, .5, {
     transform: 'translateY(0vh)',
     zIndex: 1000,
     opacity: 1
@@ -8490,7 +8338,7 @@ menuClose.addEventListener('click', function () {
     transform: 'translateY(-100vh)',
     ease: Back.easeInOut
   });
-  tl.to(main, 1.2, {
+  tl.to(main, .7, {
     transform: 'translateY(0vh)',
     ease: Back.easeInOut
   }, '-=.2');
@@ -8502,11 +8350,11 @@ menuBtn.addEventListener('click', function () {
 
   if (menuOpen === false) {
     menuOpen = true;
-    tl.to(main, .8, {
+    tl.to(main, .5, {
       transform: 'translateY(100vh)',
       ease: Power1.easeInOut
     }, '-=.2');
-    tl.fromTo(menu, .7, {
+    tl.fromTo(menu, .5, {
       transform: 'translateY(-100vh)',
       zIndex: 0,
       opacity: 1
@@ -8532,19 +8380,142 @@ menuBtn.addEventListener('click', function () {
 
   return tl;
 });
+},{}],"js/projects.js":[function(require,module,exports) {
+function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+var e = React.createElement;
+var markup = "\n    <h1>Details</h1>\n";
+
+var projectsFilter =
+/*#__PURE__*/
+function (_React$Component) {
+  _inherits(projectsFilter, _React$Component);
+
+  function projectsFilter() {
+    var _this;
+
+    _classCallCheck(this, projectsFilter);
+
+    _this = _possibleConstructorReturn(this, _getPrototypeOf(projectsFilter).call(this));
+    _this.items = document.querySelectorAll('.project__item');
+    _this.state = {
+      active: 'All',
+      filters: ['All', 'Vanilla JS', 'Design', 'React', 'Node', 'SQL', 'Gatsby', 'GraphQL']
+    };
+    return _this;
+  }
+
+  _createClass(projectsFilter, [{
+    key: "viewProject",
+    value: function viewProject(e) {
+      document.querySelector('.projects__list').style.display = 'none';
+      document.getElementById('projects__container').style.display = 'none';
+      var projectDetails = document.querySelector('.project__details');
+      projectDetails.style.display = 'block';
+      var close = document.querySelector('.project__details-close');
+      close.addEventListener('click', this.closeProject);
+    }
+  }, {
+    key: "closeProject",
+    value: function closeProject() {
+      document.querySelector('.projects__list').style.display = 'flex';
+      document.getElementById('projects__container').style.display = 'flex';
+      var projectDetails = document.querySelector('.project__details');
+      projectDetails.style.display = 'none';
+    }
+  }, {
+    key: "handleDetails",
+    value: function handleDetails() {
+      var _this2 = this;
+
+      this.items.forEach(function (item) {
+        return item.addEventListener('click', function (e) {
+          return _this2.viewProject(e);
+        });
+      });
+    }
+  }, {
+    key: "handleFilters",
+    value: function handleFilters() {
+      var active = this.state.active;
+      this.items.forEach(function (item) {
+        var tags = item.dataset.tag;
+
+        if (active !== 'All' && tags.indexOf(active) === -1) {
+          item.style.display = 'none';
+        } else {
+          item.style.display = 'block';
+        }
+      });
+    }
+  }, {
+    key: "componentDidUpdate",
+    value: function componentDidUpdate() {
+      this.handleFilters();
+    }
+  }, {
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      this.handleDetails();
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      var _this3 = this;
+
+      var _this$state = this.state,
+          active = _this$state.active,
+          filters = _this$state.filters;
+      return React.createElement("div", {
+        className: "projects__filter"
+      }, filters.map(function (filter, i) {
+        return React.createElement("div", {
+          className: "project__filter-item ".concat(filter === active ? 'active' : '', " link"),
+          onClick: function onClick() {
+            return _this3.setState({
+              active: filter
+            });
+          }
+        }, filter, filter === 'All' ? " (".concat(_this3.items.length, ")") : '');
+      }));
+    }
+  }]);
+
+  return projectsFilter;
+}(React.Component);
+
+var projectsContainer = document.getElementById('projects__container');
+ReactDOM.render(e(projectsFilter), projectsContainer);
 },{}],"js/app.js":[function(require,module,exports) {
 /*
 parcel build index.html --public-url ./
 
 git subtree push --prefix dist origin gh-pages
  */
-require('./animations.js');
+require('./animations.js'); // require('./cursor.js');
 
-require('./cursor.js');
 
 require('./scroll.js');
 
 require('./menu.js');
+
+require('./projects.js');
 
 window.addEventListener('load', function (event) {
   console.log("Time until everything loaded: ", Date.now() - timerStart, 'ms');
@@ -8569,7 +8540,7 @@ if (!touched) {
     return tl;
   });
 }
-},{"./animations.js":"js/animations.js","./cursor.js":"js/cursor.js","./scroll.js":"js/scroll.js","./menu.js":"js/menu.js"}],"../../AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+},{"./animations.js":"js/animations.js","./scroll.js":"js/scroll.js","./menu.js":"js/menu.js","./projects.js":"js/projects.js"}],"../../AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -8597,7 +8568,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "59737" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "50823" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

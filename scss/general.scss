@@ -1,4 +1,9 @@
 @import './variables';
+@import './main.scss';
+@import './mainContent.scss';
+@import './intro';
+// @import './cursor';
+@import './menu';
 
 /********* GENERAL *********/
 
@@ -12,10 +17,14 @@ body {
     -moz-font-smoothing:antialiased;
     color: $white;
     overflow: hidden;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
     @media all and (max-width: $mobile) {
         background: $black;
     }
 }
+
+a { text-decoration: none; color: inherit; }
 
 section {
     position: absolute;
@@ -28,4 +37,5 @@ section {
 .link:hover {
     color: $main1;
     transition: all 500ms ease;
+    cursor: pointer;
 }

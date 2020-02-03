@@ -1,0 +1,61 @@
+.menu {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    z-index: 0;
+    opacity: 0;
+    position: absolute;
+    background: $black;
+}
+
+.menu__list {
+    list-style: none;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.menu__item {
+    font-family: $font1;
+    font-size: 2.5em;
+    color: $white;
+    padding: 1em 0;
+    transition: all 200ms ease;
+}
+
+.menu__item:hover {
+    cursor: pointer;
+    color: $main1;
+}
+
+.menu__item:first-child {
+    padding: 0 0 1em 0;
+}
+
+.menu__item:first-child:hover .menu__close {
+    transform: rotate(315deg);
+}
+
+.menu__close {
+    width: 30px;
+    height: 2px;
+    background: white;
+    position: relative;
+    transform: rotate(45deg);
+    transition: all 400ms ease;
+}
+
+.menu__close::before {
+    content: '';
+    position: absolute;
+    top: 0px;
+    left: 0;
+    width: 30px;
+    height: 2px;
+    background: white;
+    transform: rotate(90deg);
+}

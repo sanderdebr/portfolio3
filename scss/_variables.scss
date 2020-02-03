@@ -1,17 +1,26 @@
 @import url('https://fonts.googleapis.com/css?family=Montserrat:100,200,300,400,500,600,700|Roboto:100,300,400,500,700&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Permanent+Marker&display=swap');
 
-$black: #232946;
+$black: #191A1E;
 $white: #fffffe;
 $lightgray: rgba(255, 255, 255, .1);
 $darkgray: rgba(0, 0, 0, .8);
 
-$main1: #eebbc3;
-$main2: #b8c1ec;
+$main1: #e41143;
+$main2: #fffffe;
 
 $font1: 'Roboto', sans-serif;
 $font2: 'Montserrat', sans-serif;
+$font3: 'Permanent Marker', cursive;
 
 $mobile: 920px;
+$smallScreen: 1900px;
+$screenHeight: 650px;
+
+$slide1: '.main__content[data-slide="1"]';
+$slide2: '.main__content[data-slide="2"]';
+$slide3: '.main__content[data-slide="3"]';
+$slide4: '.main__content[data-slide="4"]';
 
 @mixin after-black {
     content: "";
@@ -25,3 +34,4 @@ $mobile: 920px;
 
 $techSlide: -35;
 $circleSpeed: 50s;
+$rectangleSpeed: 20s;

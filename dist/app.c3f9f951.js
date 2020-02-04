@@ -8445,7 +8445,7 @@ function (_React$Component) {
     _this.items = document.querySelectorAll('.project__item');
     _this.state = {
       active: 'All',
-      filters: ['All', 'Vanilla JS', 'Design', 'React', 'Redux', 'Node', 'PostgreSQL', 'Firebase', 'Gatsby', 'GraphQL']
+      filters: ['All', 'Vanilla JS', 'Design', 'React', 'Redux', 'Node', 'PostgreSQL', 'MongoDB', 'Firebase', 'Gatsby', 'GraphQL']
     };
     return _this;
   }
@@ -8597,7 +8597,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "52198" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "59900" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

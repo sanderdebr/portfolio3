@@ -11,7 +11,7 @@ class projectsFilter extends React.Component {
         this.items = document.querySelectorAll('.project__item');
         this.state = {
             active: 'All',
-            filters: ['All', 'Vanilla JS', 'Design', 'React', 'Redux', 'Node', 'PostgreSQL', 'MongoDB', 'Firebase', 'Gatsby', 'GraphQL']
+            filters: ['All', 'Vanilla JS', 'Design', 'React', 'Redux', 'Node', 'PostgreSQL', 'MongoDB', 'Firebase', 'Gatsby', 'GraphQL', 'PHP', 'MySQL']
         }
     }
 

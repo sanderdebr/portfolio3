@@ -8445,7 +8445,7 @@ function (_React$Component) {
     _this.items = document.querySelectorAll('.project__item');
     _this.state = {
       active: 'All',
-      filters: ['All', 'Vanilla JS', 'Design', 'React', 'Redux', 'Node', 'PostgreSQL', 'MongoDB', 'Firebase', 'Gatsby', 'GraphQL']
+      filters: ['All', 'Vanilla JS', 'Design', 'React', 'Redux', 'Node', 'PostgreSQL', 'MongoDB', 'Firebase', 'Gatsby', 'GraphQL', 'PHP', 'MySQL']
     };
     return _this;
   }
@@ -8569,6 +8569,8 @@ if (!touched) {
     return tl;
   });
 }
+
+;
 },{"./animations.js":"js/animations.js","./scroll.js":"js/scroll.js","./menu.js":"js/menu.js","./projects.js":"js/projects.js"}],"../../AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
@@ -8597,7 +8599,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "59900" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "55040" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

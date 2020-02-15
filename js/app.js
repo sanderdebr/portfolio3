@@ -29,4 +29,4 @@ if (!touched) {
         tl.to(touchMe, 4, {opacity: '0', textContent: 'thank you', transform: 'translateY(200px)', ease: Power4.easeInOut});
         return tl;
     });
-}
+};

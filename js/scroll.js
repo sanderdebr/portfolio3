@@ -100,14 +100,17 @@ const scrollProjects = (event) => {
 
     // 6. Projects gedeelte scroll uitschakelen
     if (currentSlide === 3) {
-        let projectSection = document.querySelector('.main__content.active');
-        projectSection.removeEventListener("wheel", scrollProjects);
-    } else {
-        // Eventlisteners 700ms uitschakelen
+        document.querySelector('.projects__list').style.display = 'flex';
         mainContent.forEach(item => {
             item.removeEventListener("wheel", scrollProjects)
         });
-        setTimeout(initScroll, 700);
+    } else {
+        document.querySelector('.projects__list').style.display = 'none';
+        // Event listeners kort uitschakelen
+        mainContent.forEach(item => {
+            item.removeEventListener("wheel", scrollProjects)
+        });
+        setTimeout(initScroll, 600);
     }
 }
 
@@ -120,6 +123,7 @@ dots.forEach(dot => dot.addEventListener("click", e => {
     swipeOut(currentSlide, '-');
     dotIn(nextSlide);
     dotOut(currentSlide);
+    initScroll();
 }))
 
 // Learn more klik naar tweede slide
@@ -133,6 +137,7 @@ document.querySelector('.learnmore').addEventListener('click', () => {
 
 // View projects naar vierde slide
 document.querySelector('.viewprojects').addEventListener('click', () => {
+    document.querySelector('.projects__list').style.display = 'flex';
     viewProjects = true;
     timeline.add( swipeOut(1, '-') );
     timeline.add( swipeIn(4, '+') );
@@ -146,6 +151,7 @@ document.querySelector('.viewprojects').addEventListener('click', () => {
 
 // Logo naar eerste slide
 document.querySelector('.logo__h1').addEventListener('click', () => {
+    document.querySelector('.projects__list').style.display = 'none';
     currentSlide = document.querySelector('.main__content.active').getAttribute("data-slide");
     if (currentSlide == 1) return;
     nextSlide = 1;

@@ -1,10 +1,30 @@
 {
-  "devDependencies": {
+  "name": "portfolio3",
+  "version": "1.0.0",
+  "description": "Personal portfolio build in vanilla JS with GSAP.",
+  "main": "index.js",
+  "dependencies": {
     "cssnano": "^4.1.10",
+    "react": "^16.12.0",
+    "react-dom": "^16.12.0",
     "sass": "^1.23.7"
   },
-  "dependencies": {
-    "react": "^16.12.0",
-    "react-dom": "^16.12.0"
-  }
+  "devDependencies": {
+    "parcel-bundler": "^1.12.4"
+  },
+  "scripts": {
+    "dev": "parcel index.html",
+    "build": "parcel build index.html --public-url ./"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sanderdebr/portfolio3.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sanderdebr/portfolio3/issues"
+  },
+  "homepage": "https://github.com/sanderdebr/portfolio3#readme"
 }

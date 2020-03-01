@@ -43,15 +43,15 @@ const timeline = new TimelineMax();
 const introTl = () => {
 
     var tl = new TimelineMax();
-    tl.to(introProgressBar, 1, {height: '280px', ease: Power4.easeInOut}, '+=.5')
-    tl.to(introProgressBarInner, 1, {height: '300px', transformOrigin:"0 100%", ease: Power4.easeInOut}, '-=.55');
-    tl.fromTo(introTitle, .7, {marginTop: 100, visibility: 'hidden'}, {marginTop: -75, visibility: 'visible', ease: Power4.easeInOut}, '-=.3');
-    tl.to(introProgressBar, 1, {height: '100vw', ease: Power4.easeInOut}, '-=.67');
-    tl.to(introProgressBarInner, 1, {height: '2000px', ease: Power4.easeInOut}, '-=1');
-    tl.to(introTitle, .7, {marginTop: 100, ease: Power4.easeInOut}, '+=.5');
-    tl.to(introProgressBar, .5, {opacity: 0, ease: Power4.easeInOut}, '-=.5')
-    tl.to(introAfter, 1, {height: '100%', ease: Power4.easeInOut}, '-=.5')
-    tl.to(main, 0, {background: '#e41143' }, '-=.5');
+    // tl.to(introProgressBar, 1, {height: '280px', ease: Power4.easeInOut}, '+=.5')
+    // tl.to(introProgressBarInner, 1, {height: '300px', transformOrigin:"0 100%", ease: Power4.easeInOut}, '-=.55');
+    // tl.fromTo(introTitle, .7, {marginTop: 100, visibility: 'hidden'}, {marginTop: -75, visibility: 'visible', ease: Power4.easeInOut}, '-=.3');
+    // tl.to(introProgressBar, 1, {height: '100vw', ease: Power4.easeInOut}, '-=.67');
+    // tl.to(introProgressBarInner, 1, {height: '2000px', ease: Power4.easeInOut}, '-=1');
+    // tl.to(introTitle, .7, {marginTop: 100, ease: Power4.easeInOut}, '+=.5');
+    // tl.to(introProgressBar, .5, {opacity: 0, ease: Power4.easeInOut}, '-=.5')
+    // tl.to(introAfter, 1, {height: '100%', ease: Power4.easeInOut}, '-=.5')
+    // tl.to(main, 0, {background: '#e41143' }, '-=.5');
     tl.to(intro, 0, {display: 'none' });
 
     return tl;
@@ -91,7 +91,7 @@ const mainTl = () => {
     tl.to(buttonsAfter, 1, {width: '0%', ease: Power4.easeInOut}, '-=1' );
 
     Array.from(mainBoxes).forEach(box => {
-        tl.to(box, 2, {height: '100%', zIndex: '0', borderRight: '1px solid rgba(184, 193, 236, .1)', ease: Power4.easeInOut }, '-=1.5' );
+        tl.to(box, 2, {height: '200vh', zIndex: '0', borderRight: '1px solid rgba(184, 193, 236, .1)', ease: Power4.easeInOut }, '-=1.5' );
     });
 
     tl.fromTo(circle, 2, {opacity: 0 }, {opacity: 1, ease: Power4.easeInOut}, );
